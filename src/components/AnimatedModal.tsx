@@ -39,7 +39,7 @@ export const AnimatedModal = ({
           onClick={onClose}
         >
           <motion.div
-            className={`${className} absolute border dark:border-zinc-700 border-zinc-200 top-1/2 left-1/2 bg-[#FEFEFE] dark:bg-[#101213] rounded-2xl shadow-xl p-6 ${
+            className={`${className} absolute top-1/2 left-1/2 bg-[#282A2E] dark:bg-[#101213] rounded-2xl shadow-xl p-6 ${
               customWidth
                 ? customWidth
                 : widthFitContainer
@@ -56,7 +56,7 @@ export const AnimatedModal = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="absolute cursor-pointer top-3 right-3 text-gray-500 dark:hover:text-white hover:text-black"
+                className="absolute cursor-pointer top-3 right-3 text-gray-500 dark:hover:text-white hover:text-white"
               >
                 ✕
               </button>

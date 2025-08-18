@@ -12,7 +12,7 @@ interface GradientButtonProps
   fullWidth?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 /**
@@ -56,17 +56,17 @@ export default function GradientButton({
   ...rest
 }: GradientButtonProps) {
   const isGhost = variant === "ghost";
-  const base = `inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-30 active:scale-98`;
+  const base = `items-center focus-visible:outline-none max-w-fit justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-30`;
 
   const gradient = isGhost ? "" : VARIANT_GRADIENTS[variant];
   const sizeCls = SIZE_CLASSES[size];
-  const widthCls = fullWidth ? "w-full" : "inline-flex";
+  const widthCls = fullWidth ? "w-full" : "";
   const opacityDisabled =
     disabled || loading ? "opacity-70 cursor-not-allowed" : "hover:shadow-lg";
 
   // Combine classes, keep it readable and Tailwind-friendly
   const classes =
-    `${base} ${sizeCls} ${widthCls} ${gradient} ${opacityDisabled} ${className}`.trim();
+    `${base} ${sizeCls} ${widthCls} ${gradient} ${className}`.trim();
 
   return (
     <button
