@@ -1,0 +1,441 @@
+{
+  "address": "HTdCCMoYSuPcpJmYeFUCW8YcvcBDYfwMMSRngKLvRNk5",
+  "metadata": {
+    "name": "dao_program",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "docs": ["A basic DAO program on Solana."],
+  "instructions": [
+    {
+      "name": "create_proposal",
+      "docs": [
+        "Creates a new proposal. The proposal is stored in a separate account.",
+        "Anyone can create a proposal."
+      ],
+      "discriminator": [132, 116, 68, 174, 216, 160, 198, 22],
+      "accounts": [
+        {
+          "name": "dao_state",
+          "writable": true
+        },
+        {
+          "name": "proposal",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [112, 114, 111, 112, 111, 115, 97, 108]
+              },
+              {
+                "kind": "account",
+                "path": "dao_state.proposal_count",
+                "account": "DaoState"
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "start_time",
+          "type": "i64"
+        },
+        {
+          "name": "end_time",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "docs": [
+        "Initializes the DAO. This instruction creates the main DAO state account.",
+        "It can only be called once."
+      ],
+      "discriminator": [175, 175, 109, 31, 13, 152, 155, 237],
+      "accounts": [
+        {
+          "name": "dao_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [100, 97, 111, 95, 115, 116, 97, 116, 101]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "arg",
+                "path": "title"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "token_name",
+          "type": "string"
+        },
+        {
+          "name": "token_max_supply",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "join_dao",
+      "docs": [
+        "Creates a new account that registers a user as a DAO member.",
+        "Requires the user to have at least 1 token."
+      ],
+      "discriminator": [43, 206, 228, 66, 82, 56, 96, 196],
+      "accounts": [
+        {
+          "name": "member_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109, 101, 109, 98, 101, 114, 95, 115, 116, 97, 116, 101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "dao_owner"
+              },
+              {
+                "kind": "arg",
+                "path": "title"
+              },
+              {
+                "kind": "account",
+                "path": "member"
+              }
+            ]
+          }
+        },
+        {
+          "name": "member",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "dao_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [100, 97, 111, 95, 115, 116, 97, 116, 101]
+              },
+              {
+                "kind": "arg",
+                "path": "dao_owner"
+              },
+              {
+                "kind": "arg",
+                "path": "title"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "_dao_owner",
+          "type": "pubkey"
+        },
+        {
+          "name": "_dao_title",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "vote",
+      "docs": [
+        "Allows a user to vote on a proposal.",
+        "A user can only vote once per proposal."
+      ],
+      "discriminator": [227, 110, 155, 23, 136, 126, 172, 25],
+      "accounts": [
+        {
+          "name": "proposal",
+          "writable": true
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "voter_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [118, 111, 116, 101, 114, 95, 115, 116, 97, 116, 101]
+              },
+              {
+                "kind": "account",
+                "path": "proposal"
+              },
+              {
+                "kind": "account",
+                "path": "voter"
+              }
+            ]
+          }
+        },
+        {
+          "name": "clock",
+          "address": "SysvarC1ock11111111111111111111111111111111"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "vote_choice",
+          "type": {
+            "defined": {
+              "name": "VoteChoice"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "DaoState",
+      "discriminator": [24, 50, 14, 105, 233, 60, 201, 244]
+    },
+    {
+      "name": "MemberState",
+      "discriminator": [41, 28, 21, 90, 91, 49, 228, 104]
+    },
+    {
+      "name": "Proposal",
+      "discriminator": [26, 94, 189, 187, 116, 136, 53, 33]
+    },
+    {
+      "name": "VoterState",
+      "discriminator": [251, 152, 76, 161, 77, 177, 239, 208]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "EmptyTitle",
+      "msg": "The proposal title cannot be empty."
+    },
+    {
+      "code": 6001,
+      "name": "EmptyDescription",
+      "msg": "The proposal description cannot be empty."
+    },
+    {
+      "code": 6002,
+      "name": "ProposalNotActive",
+      "msg": "This proposal is no longer active."
+    },
+    {
+      "code": 6003,
+      "name": "AlreadyVoted",
+      "msg": "You have already voted on this proposal."
+    },
+    {
+      "code": 6004,
+      "name": "ProposalNotStarted",
+      "msg": "Voting for this proposal has not yet started."
+    },
+    {
+      "code": 6005,
+      "name": "ProposalExpired",
+      "msg": "The voting period for this proposal has expired."
+    }
+  ],
+  "types": [
+    {
+      "name": "DaoState",
+      "docs": [
+        "The main DAO state account. This account holds a counter for the total number of proposals."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "proposal_count",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "token_name",
+            "type": "string"
+          },
+          {
+            "name": "token_max_supply",
+            "type": "i64"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MemberState",
+      "docs": [
+        "A member's state account. This acts as the on-chain membership registry."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "member",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Proposal",
+      "docs": [
+        "A proposal account. Each proposal has a title, description, and vote counts."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "for_votes",
+            "type": "u64"
+          },
+          {
+            "name": "against_votes",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "is_active",
+            "type": "bool"
+          },
+          {
+            "name": "start_time",
+            "type": "i64"
+          },
+          {
+            "name": "end_time",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoteChoice",
+      "docs": ["The different voting choices."],
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "For"
+          },
+          {
+            "name": "Against"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoterState",
+      "docs": [
+        "A voter state account. This prevents a single user from voting multiple times on the same proposal."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "proposal",
+            "type": "pubkey"
+          },
+          {
+            "name": "has_voted",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}
