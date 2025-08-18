@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TrendingUp, Users, DollarSign, ExternalLink } from "lucide-react";
 import { guilds } from "../data/mockData";
@@ -17,10 +17,13 @@ import {
   mintTo,
 } from "@solana/spl-token";
 import { useProgram } from "../hooks/useProgram";
+import GradientButton from "../components/GradientButton";
+import { AnimatedModal } from "../components/AnimatedModal";
 
 const PortfolioPage: React.FC = () => {
   const { publicKey } = useWallet();
   const { program } = useProgram();
+  const [isOpen, setIsOpen] = useState(false);
   const userScrolls = {
     "aria-skywind": 5,
     "luna-starfall": 3,
@@ -68,22 +71,21 @@ const PortfolioPage: React.FC = () => {
     <div className="min-h-screen bg-background py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Your Guild Portfolio
-          </h1>
-          <p className="text-gray-400">
-            Track your investments and guild participation
-          </p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              Your Guild Portfolio
+            </h1>
+            <p className="text-gray-400">
+              Track your investments and guild participation
+            </p>
+          </div>
+          <div>
+            <GradientButton onClick={() => setIsOpen(true)}>
+              <span>Create a guild</span>
+            </GradientButton>
+          </div>
         </div>
-        <button
-          onClick={async () => {
-            // await createRealmExample();
-          }}
-          className="text-[#FFFFFF]"
-        >
-          Create a guild
-        </button>
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-gradient-to-br from-accent-purple/20 to-purple-900/20 rounded-2xl p-6 border border-accent-purple/30">
@@ -265,6 +267,14 @@ const PortfolioPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <AnimatedModal
+        isOpen={true}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
+        <p>DJAOSIJD</p>
+      </AnimatedModal>
     </div>
   );
 };
