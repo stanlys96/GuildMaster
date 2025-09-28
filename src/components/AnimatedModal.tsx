@@ -31,7 +31,7 @@ export const AnimatedModal = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50"
+          className="fixed inset-0 bg-black/30 overflow-hidden backdrop-blur-sm z-50"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -39,7 +39,7 @@ export const AnimatedModal = ({
           onClick={onClose}
         >
           <motion.div
-            className={`${className} absolute top-1/2 left-1/2 bg-[#282A2E] dark:bg-[#101213] rounded-2xl shadow-xl p-6 ${
+            className={`${className} border border-[#88888850] absolute top-1/2 left-1/2 bg-[#282A2E] dark:bg-[#101213] rounded-2xl shadow-xl p-6 ${
               customWidth
                 ? customWidth
                 : widthFitContainer

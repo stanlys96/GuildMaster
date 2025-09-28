@@ -1,4 +1,4 @@
-import { ArrowBigRight } from "lucide-react";
+import { ArrowBigLeft, ArrowBigRight, Rocket, RocketIcon } from "lucide-react";
 import { useState } from "react";
 import { CoolRadioGroup, RadioOption } from "./CoolRadioButton";
 import CoolSlider from "./CoolSlider";
@@ -31,7 +31,7 @@ export const CreateGuildComponent = ({
     },
   ];
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-4 max-h-[85vh]">
       <p className="font-bold text-[23px]">Create a new Guild</p>
       {currentStep === 1 && (
         <div className="flex flex-col gap-y-4">
@@ -140,7 +140,7 @@ export const CreateGuildComponent = ({
         </div>
       )}
       {currentStep === 3 && (
-        <div className="flex flex-col max-h-[550px] overflow-scroll">
+        <div className="flex flex-col overflow-scroll">
           <p className="font-bold text-[20px] mb-1">Voting rules</p>
           <p className="text-[16px] mb-6 text-[#787988]">
             Choose voting rules for your Guild
@@ -284,19 +284,42 @@ export const CreateGuildComponent = ({
       <div className="flex gap-x-2 items-center mt-4">
         <button
           type="button"
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            if (currentStep === 1) {
+              setIsOpen(false);
+            } else {
+              setCurrentStep((prevState) => prevState - 1);
+            }
+          }}
           className="w-full bg-[#888888] focus-visible:outline-none px-4 py-2 text-base rounded-lg items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-30 active:scale-98"
         >
-          Cancel
+          {currentStep === 1 ? (
+            "Cancel"
+          ) : (
+            <span className="flex items-center gap-x-1 justify-center">
+              <ArrowBigLeft />
+              <span>Back</span>
+            </span>
+          )}
         </button>
         <button
           onClick={() => {
-            setCurrentStep((prevState) => prevState + 1);
+            if (currentStep < 5) {
+              setCurrentStep((prevState) => prevState + 1);
+            }
           }}
           type="button"
           className="bg-gradient-to-r flex items-center gap-x-1 justify-center w-full px-4 py-2 rounded-lg from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600"
         >
-          <span>Next</span> <ArrowBigRight />
+          {currentStep < 5 ? (
+            <span className="flex items-center gap-x-1 justify-center">
+              <span>Next</span> <ArrowBigRight />
+            </span>
+          ) : (
+            <span className="flex items-center gap-x-1 justify-center">
+              <span>Deploy</span> <RocketIcon />
+            </span>
+          )}
         </button>
       </div>
     </div>

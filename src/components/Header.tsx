@@ -22,9 +22,9 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="bg-surface border-b border-gray-800 sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="bg-surface border-b h-[10vh] border-gray-800 sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+      <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
+        <div className="flex h-full items-center justify-between">
           {/* Logo */}
           <Link
             to="/"

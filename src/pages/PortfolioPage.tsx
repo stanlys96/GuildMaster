@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { TrendingUp, Users, DollarSign, ExternalLink } from "lucide-react";
 import { guilds } from "../data/mockData";
@@ -34,6 +34,7 @@ const PortfolioPage: React.FC = () => {
   };
   const createFormik = useFormik<any>({
     initialValues: { name: "" },
+    onSubmit: () => {},
   });
 
   if (!publicKey?.toBase58()) {
@@ -74,7 +75,7 @@ const PortfolioPage: React.FC = () => {
   const potentialEarnings = totalHoldingsValue * 0.04; // 4% potential earnings
 
   return (
-    <div className="min-h-screen bg-background py-8">
+    <div className="min-h-screen bg-background py-8 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8 flex justify-between items-center">
@@ -164,7 +165,7 @@ const PortfolioPage: React.FC = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[].map((guild) => {
+              {[{ id: "1" }].map((guild) => {
                 const scrollsOwned = userScrolls[guild.id];
                 const currentValue = scrollsOwned * guild.scrollPrice;
                 const profitShare =
