@@ -31,7 +31,7 @@ export const CreateGuildComponent = ({
     },
   ];
   return (
-    <div className="flex flex-col gap-y-4 max-h-[85vh]">
+    <div className="flex flex-col gap-y-4 max-h-[85vh] overflow-scroll">
       <p className="font-bold text-[23px]">Create a new Guild</p>
       {currentStep === 1 && (
         <div className="flex flex-col gap-y-4">
@@ -140,7 +140,7 @@ export const CreateGuildComponent = ({
         </div>
       )}
       {currentStep === 3 && (
-        <div className="flex flex-col overflow-scroll">
+        <div className="flex flex-col">
           <p className="font-bold text-[20px] mb-1">Voting rules</p>
           <p className="text-[16px] mb-6 text-[#787988]">
             Choose voting rules for your Guild
@@ -186,7 +186,7 @@ export const CreateGuildComponent = ({
         </div>
       )}
       {currentStep === 4 && (
-        <div className="flex flex-col max-h-[550px] overflow-scroll">
+        <div className="flex flex-col max-h-[550px]">
           <p className="font-bold text-[20px] mb-1">
             Add initial members to your Guild (optional)
           </p>

@@ -1,4 +1,5 @@
 import { DatePicker } from "antd";
+import { Plus, RocketIcon } from "lucide-react";
 
 const { RangePicker } = DatePicker;
 
@@ -83,6 +84,26 @@ export const CreateProposalComponent = ({ createFormik, loading }: Props) => {
         </div>
         <div>
           <label htmlFor="name" className="block mb-1 text-white text-md">
+            Type of vote
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            onBlur={createFormik.handleBlur}
+            value={"Single choice vote"}
+            // onChange={createFormik.handleChange}
+            placeholder="Enter guild name"
+            className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+              loading
+                ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                : "dark:bg-zinc-800 bg-[#2D2F33]"
+            }`}
+            disabled
+          />
+        </div>
+        <div>
+          <label htmlFor="name" className="block mb-1 text-white text-md">
             Start Date
           </label>
           <div className="flex flex-row gap-x-2 items-center">
@@ -118,9 +139,71 @@ export const CreateProposalComponent = ({ createFormik, loading }: Props) => {
           </div>
         </div>
         <div>
-          <label htmlFor="name" className="block mb-1 text-white text-md">
+          <label htmlFor="name" className="block mb-4 text-white text-md">
             Options (minimum 2)
           </label>
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-1 text-white text-md">
+              Option #1
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              onBlur={createFormik.handleBlur}
+              value={createFormik.values.name}
+              onChange={createFormik.handleChange}
+              placeholder="Enter guild name"
+              className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+                loading
+                  ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                  : "dark:bg-zinc-800 bg-[#2D2F33]"
+              }`}
+              disabled={loading}
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-1 text-white text-md">
+              Option #2
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              onBlur={createFormik.handleBlur}
+              value={createFormik.values.name}
+              onChange={createFormik.handleChange}
+              placeholder="Enter guild name"
+              className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+                loading
+                  ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                  : "dark:bg-zinc-800 bg-[#2D2F33]"
+              }`}
+              disabled={loading}
+            />
+          </div>
+        </div>
+        <div className="dotted border border-[#88888850] border-dotted px-5 py-3 cursor-pointer rounded-lg">
+          <p className="flex flex-row gap-x-1 items-center justify-center w-full">
+            <Plus /> Add Choice
+          </p>
+        </div>
+        <div className="flex gap-x-2 items-center mt-4">
+          <button
+            type="button"
+            className="w-full bg-[#888888] focus-visible:outline-none px-4 py-2 text-base rounded-lg items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-30 active:scale-98"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {}}
+            type="button"
+            className="bg-gradient-to-r flex items-center gap-x-1 justify-center w-full px-4 py-2 rounded-lg from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600"
+          >
+            <span className="flex items-center gap-x-1 justify-center">
+              <span>Create</span> <RocketIcon />
+            </span>
+          </button>
         </div>
       </div>
     </div>
