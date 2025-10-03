@@ -21,6 +21,7 @@ import GradientButton from "../components/GradientButton";
 import { AnimatedModal } from "../components/AnimatedModal";
 import { useFormik } from "formik";
 import { CreateGuildComponent } from "../components/CreateGuildComponent";
+import { CreateGuildFormikProps } from "../utils/interface";
 
 const PortfolioPage: React.FC = () => {
   const { publicKey } = useWallet();
@@ -32,8 +33,18 @@ const PortfolioPage: React.FC = () => {
     "luna-starfall": 3,
     "kai-thunderbolt": 8,
   };
-  const createFormik = useFormik<any>({
-    initialValues: { name: "" },
+  const createFormik = useFormik<CreateGuildFormikProps>({
+    initialValues: {
+      name: "",
+      tokenName: "",
+      description: "",
+      initialTokenAmount: "",
+      tokenAllocation: "",
+      support: 50,
+      quorum: 50,
+      coreMemberThreshold: 50,
+      members: [],
+    },
     onSubmit: () => {},
   });
 

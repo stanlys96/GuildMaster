@@ -1,10 +1,20 @@
-import { ArrowBigLeft, ArrowBigRight, Rocket, RocketIcon } from "lucide-react";
+import { ArrowBigLeft, ArrowBigRight, RocketIcon } from "lucide-react";
 import { useState } from "react";
 import { CoolRadioGroup, RadioOption } from "./CoolRadioButton";
 import CoolSlider from "./CoolSlider";
+import { CreateGuildFormikProps } from "../utils/interface";
+import { FormikProps } from "formik";
+import {
+  validateCreateGuildStepOne,
+  validateCreateGuildStepTwo,
+} from "../utils/validation";
+import Swal from "sweetalert2";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { formatLabel } from "../utils/helper";
+import { PersonIcon } from "@radix-ui/react-icons";
 
 interface Props {
-  createFormik: any;
+  createFormik: FormikProps<CreateGuildFormikProps>;
   loading: boolean;
   setIsOpen: (val: boolean) => void;
 }
@@ -14,22 +24,23 @@ export const CreateGuildComponent = ({
   loading,
   setIsOpen,
 }: Props) => {
+  const { publicKey } = useWallet();
   const [currentStep, setCurrentStep] = useState(1);
-  const [value, setValue] = useState("");
 
   const plans: RadioOption[] = [
     {
-      value: "free",
+      value: "allocation_by_members",
       label: "Allocation by members",
       description:
         "An existing member can propose how many tokens shall be issued to a new member",
     },
     {
-      value: "pro",
+      value: "equal_shares",
       label: "Equal shares",
       description: "Tokens are equally distributed among all members",
     },
   ];
+
   return (
     <div className="flex flex-col gap-y-4 max-h-[85vh] overflow-scroll">
       <p className="font-bold text-[23px]">Create a new Guild</p>
@@ -56,15 +67,18 @@ export const CreateGuildComponent = ({
             />
           </div>
           <div>
-            <label htmlFor="name" className="block mb-1 text-white text-md">
+            <label
+              htmlFor="tokenName"
+              className="block mb-1 text-white text-md"
+            >
               Guild token name
             </label>
             <input
-              id="name"
-              name="name"
+              id="tokenName"
+              name="tokenName"
               type="text"
               onBlur={createFormik.handleBlur}
-              value={createFormik.values.name}
+              value={createFormik.values.tokenName}
               onChange={createFormik.handleChange}
               placeholder="Enter guild name"
               className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
@@ -76,17 +90,20 @@ export const CreateGuildComponent = ({
             />
           </div>
           <div>
-            <label htmlFor="name" className="block mb-1 text-white text-md">
+            <label
+              htmlFor="description"
+              className="block mb-1 text-white text-md"
+            >
               Description
             </label>
             <input
-              id="name"
-              name="name"
+              id="description"
+              name="description"
               type="text"
               onBlur={createFormik.handleBlur}
-              value={createFormik.values.name}
+              value={createFormik.values.description}
               onChange={createFormik.handleChange}
-              placeholder="Enter guild name"
+              placeholder="Enter guild description"
               className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
                 loading
                   ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
@@ -102,16 +119,22 @@ export const CreateGuildComponent = ({
             <p className="text-[#797A8A] mb-2">
               How many tokens will be minted for initial Guild members
             </p>
-            <label htmlFor="name" className="block mb-1 text-white text-md">
+            <label
+              htmlFor="initialTokenAmount"
+              className="block mb-1 text-white text-md"
+            >
               Amount
             </label>
             <input
-              id="name"
-              name="name"
+              id="initialTokenAmount"
+              name="initialTokenAmount"
               type="text"
               onBlur={createFormik.handleBlur}
-              value={createFormik.values.name}
-              onChange={createFormik.handleChange}
+              value={createFormik.values.initialTokenAmount}
+              onChange={(e) => {
+                const digitsOnly = e.target.value.replace(/\D/g, "");
+                createFormik.setFieldValue("initialTokenAmount", digitsOnly);
+              }}
               placeholder="Initial token amount"
               className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
                 loading
@@ -132,8 +155,10 @@ export const CreateGuildComponent = ({
           <CoolRadioGroup
             name="plan"
             options={plans}
-            value={value}
-            onChange={setValue}
+            value={createFormik.values.tokenAllocation}
+            onChange={(val) =>
+              createFormik.setFieldValue("tokenAllocation", val)
+            }
             orientation="vertical"
             size="md"
           />
@@ -155,7 +180,8 @@ export const CreateGuildComponent = ({
             max={100}
             defaultValue={50}
             label=""
-            onChange={(val) => console.log(val)}
+            value={createFormik.values.support}
+            onChange={(val) => createFormik.setFieldValue("support", val)}
           />
           <p className="font-bold text-[20px] mb-1 mt-2">Quorum</p>
           <p className="text-[16px] mb-4 text-[#787988]">
@@ -167,7 +193,8 @@ export const CreateGuildComponent = ({
             max={100}
             defaultValue={50}
             label=""
-            onChange={(val) => console.log(val)}
+            value={createFormik.values.quorum}
+            onChange={(val) => createFormik.setFieldValue("quorum", val)}
           />
           <p className="font-bold text-[20px] mb-1 mt-2">
             Core Member Threshold
@@ -181,7 +208,10 @@ export const CreateGuildComponent = ({
             max={100}
             defaultValue={50}
             label=""
-            onChange={(val) => console.log(val)}
+            value={createFormik.values.coreMemberThreshold}
+            onChange={(val) =>
+              createFormik.setFieldValue("coreMemberThreshold", val)
+            }
           />
         </div>
       )}
@@ -197,6 +227,8 @@ export const CreateGuildComponent = ({
             <p className="font-bold text-[18px] mb-2">Member #1 (You)</p>
             <p className="mb-2 ml-3">Public key</p>
             <input
+              value={publicKey?.toBase58()}
+              disabled
               type="text"
               className="px-3 py-3 flex outline-none rounded-xl w-full bg-[#2C2E32] mb-2 justify-between items-center"
             />
@@ -204,16 +236,22 @@ export const CreateGuildComponent = ({
               <div className="w-full col-span-2">
                 <p className="mb-2 ml-3">Token amount</p>
                 <input
+                  value={createFormik.values.initialTokenAmount}
+                  disabled
                   type="text"
                   className="px-3 py-3 flex-2 outline-none rounded-xl w-full bg-[#2C2E32] mb-2 justify-between items-center"
                 />
               </div>
               <div className="w-full">
                 <p className="mb-2 ml-3">Percentage</p>
-                <input
-                  type="text"
-                  className="px-3 py-3 flex-2 outline-none rounded-xl w-full bg-[#2C2E32] mb-2 justify-between items-center"
-                />
+                <div className="px-3 py-3 flex-2 outline-none rounded-xl w-full bg-[#2C2E32] mb-2 justify-between items-center">
+                  <input
+                    className="bg-transparent"
+                    disabled
+                    value="100%"
+                    type="text"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -229,54 +267,71 @@ export const CreateGuildComponent = ({
           <p className="font-bold text-[20px] mb-1">Final review</p>
           <div className="px-3 py-3 rounded-xl w-full bg-[#2C2E32] my-2">
             <p className="text-[#787988] font-bold text-[18px]">Guild Name</p>
-            <p className="text-[18px] font-semibold">Cryptoland DAO</p>
+            <p className="text-[18px] font-semibold">
+              {createFormik.values.name}
+            </p>
           </div>
           <div className="flex flex-col gap-y-2 mt-4">
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">Token name</p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                ${createFormik.values.tokenName}
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">
                 Description
               </p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                {createFormik.values.description}
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">
                 Token amount
               </p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                {createFormik.values.initialTokenAmount.replace(
+                  /\B(?=(\d{3})+(?!\d))/g,
+                  ","
+                )}
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">
                 Token allocation
               </p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                {formatLabel(createFormik.values.tokenAllocation)}
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">Support</p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                {createFormik.values.support}%
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">Quorum</p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                {createFormik.values.quorum}%
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">
                 Core member threshold
               </p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold text-[16px] text-white">
+                {createFormik.values.coreMemberThreshold}%
+              </p>
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[16px] font-bold text-[#787988]">
                 Initial members
               </p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
-            </div>
-            <div className="flex justify-between items-center">
-              <p className="text-[16px] font-bold text-[#787988]">Fee</p>
-              <p className="font-semibold text-[16px] text-white">$CLND</p>
+              <p className="font-semibold flex flex-row gap-x-1 items-center text-[16px] text-white">
+                <PersonIcon />1
+              </p>
             </div>
           </div>
         </div>
@@ -305,7 +360,33 @@ export const CreateGuildComponent = ({
         <button
           onClick={() => {
             if (currentStep < 5) {
-              setCurrentStep((prevState) => prevState + 1);
+              if (currentStep === 1) {
+                validateCreateGuildStepOne(
+                  createFormik,
+                  () => setCurrentStep((prevState) => prevState + 1),
+                  (err) => {
+                    Swal.fire({
+                      title: "",
+                      text: err,
+                      icon: "info",
+                    });
+                  }
+                );
+              } else if (currentStep === 2) {
+                validateCreateGuildStepTwo(
+                  createFormik,
+                  () => setCurrentStep((prevState) => prevState + 1),
+                  (err) => {
+                    Swal.fire({
+                      title: "",
+                      text: err,
+                      icon: "info",
+                    });
+                  }
+                );
+              } else if (currentStep === 3 || currentStep === 4) {
+                setCurrentStep((prevState) => prevState + 1);
+              }
             }
           }}
           type="button"
