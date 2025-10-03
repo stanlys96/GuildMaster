@@ -15,3 +15,15 @@ export interface CreateGuildFormikProps {
   coreMemberThreshold: number;
   members: Member[];
 }
+
+export interface CreateProposalFormikProps {
+  name: string;
+  description: string;
+  link: string;
+  typeOfVote: string;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
+  options: string[];
+}

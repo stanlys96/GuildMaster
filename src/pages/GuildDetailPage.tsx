@@ -21,12 +21,9 @@ import GradientButton from "../components/GradientButton";
 import { AnimatedModal } from "../components/AnimatedModal";
 import { useFormik } from "formik";
 import { CreateProposalComponent } from "../components/CreateProposalComponent";
+import { CreateProposalFormikProps } from "../utils/interface";
 
 const GuildDetailPage: React.FC = () => {
-  const createFormik = useFormik<any>({
-    initialValues: { title: "" },
-    onSubmit: () => {},
-  });
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { id } = useParams<{ id: string }>();
 
@@ -76,10 +73,7 @@ const GuildDetailPage: React.FC = () => {
           setIsOpen(false);
         }}
       >
-        <CreateProposalComponent
-          createFormik={createFormik}
-          loading={loading}
-        />
+        <CreateProposalComponent loading={loading} />
       </AnimatedModal>
     </div>
   );
