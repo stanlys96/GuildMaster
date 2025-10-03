@@ -61,14 +61,36 @@ const GuildDetailPage: React.FC = () => {
           </span>
         </GradientButton>
       </div>
-      <div className="bg-surface rounded-2xl p-6 flex-1 flex justify-center items-center flex-col">
-        <div className="flex flex-col justify-center items-center">
-          <Banknote />
-          <p className="text-[20px] font-bold">No proposals yet</p>
-          <p className="text-[#707181]">
-            Initiate a proposal by clicking New Proposal
-          </p>
-        </div>
+      <div className="bg-surface rounded-2xl p-4 flex-1 flex items-center flex-col overflow-scroll">
+        {false && (
+          <div className="flex flex-col justify-center items-center">
+            <Banknote />
+            <p className="text-[20px] font-bold">No proposals yet</p>
+            <p className="text-[#707181]">
+              Initiate a proposal by clicking New Proposal
+            </p>
+          </div>
+        )}
+        {true && (
+          <div className="w-full">
+            <div className="bg-background/50 cursor-pointer p-3 rounded-md w-full">
+              <div className="flex flex-row justify-between items-center">
+                <p className="font-bold text-[24px]">
+                  Forget Greenland, let's buy Ireland
+                </p>
+                <p className="text-[#ABA245]">starts later</p>
+              </div>
+              <p className="mt-2 text-[#787988]">
+                My forefathers were Irish and since it's smaller, it's probably
+                cheaper. Let's do Ireland instead.
+              </p>
+              <div className="flex flex-row justify-between items-center mt-5">
+                <p>By: daosidjaosijd</p>
+                <p>End date: Dec 31, 2025, 5:08 PM</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <AnimatedModal
         isOpen={isOpen}
