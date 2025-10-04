@@ -170,7 +170,7 @@ export const CreateProposalComponent = ({ loading }: Props) => {
                   Options (minimum 2)
                 </label>
                 <FieldArray name="options">
-                  {({ push, remove }) => (
+                  {() => (
                     <div>
                       {values.options.map((option, index) => (
                         <div key={index} className="mb-4">
@@ -178,13 +178,13 @@ export const CreateProposalComponent = ({ loading }: Props) => {
                             htmlFor={`options[${index}]`}
                             className="block mb-1 text-white text-md"
                           >
-                            Option #1
+                            Option #{index + 1}
                           </label>
                           <Field
                             id={`options[${index}]`}
                             name={`options[${index}]`}
                             as="input"
-                            placeholder="Enter guild name"
+                            placeholder={`Enter option #${index + 1}`}
                             className={`w-full text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
                               loading
                                 ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
