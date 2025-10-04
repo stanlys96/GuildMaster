@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Vote, Clock, User, MessageSquare, ThumbsUp, ThumbsDown } from 'lucide-react';
-import { proposals, guilds } from '../data/mockData';
-import { useWallet } from '../contexts/WalletContext';
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  ArrowLeft,
+  Vote,
+  Clock,
+  User,
+  MessageSquare,
+  ThumbsUp,
+  ThumbsDown,
+} from "lucide-react";
+import { proposals, guilds } from "../data/mockData";
+import { useWallet } from "../contexts/WalletContext";
 
 const ProposalDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { isConnected, vote, votedProposals } = useWallet();
   const [hasVoted, setHasVoted] = useState(false);
 
-  const proposal = proposals.find(p => p.id === id);
-  const guild = proposal ? guilds.find(g => g.id === proposal.guildId) : null;
-  const hasAlreadyVoted = votedProposals.has(id || '') || hasVoted;
+  const proposal = proposals.find((p) => p.id === id);
+  const guild = proposal ? guilds.find((g) => g.id === proposal.guildId) : null;
+  const hasAlreadyVoted = votedProposals.has(id || "") || hasVoted;
 
   if (!proposal || !guild) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Proposal Not Found</h1>
+          <h1 className="text-2xl font-bold text-white mb-4">
+            Proposal Not Found
+          </h1>
           <Link to="/" className="text-accent-purple hover:text-purple-400">
             Return to Discover
           </Link>
@@ -42,7 +52,7 @@ const ProposalDetailPage: React.FC = () => {
         {/* Back Navigation */}
         <div className="mb-6">
           <Link
-            to={`/guild/${guild.id}`}
+            to={`/portfolio/guild/${guild.id}`}
             className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -54,7 +64,9 @@ const ProposalDetailPage: React.FC = () => {
         <div className="bg-surface rounded-2xl p-8 shadow-2xl mb-8">
           <div className="flex items-start justify-between mb-6">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-white mb-4">{proposal.title}</h1>
+              <h1 className="text-3xl font-bold text-white mb-4">
+                {proposal.title}
+              </h1>
               <div className="flex items-center space-x-6 text-sm text-gray-400">
                 <div className="flex items-center space-x-2">
                   <User className="h-4 w-4" />
@@ -66,11 +78,15 @@ const ProposalDetailPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className={`px-4 py-2 rounded-lg text-sm font-medium ${
-              proposal.status === 'Active' ? 'bg-green-500/20 text-green-400' :
-              proposal.status === 'Passed' ? 'bg-blue-500/20 text-blue-400' :
-              'bg-red-500/20 text-red-400'
-            }`}>
+            <div
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                proposal.status === "Active"
+                  ? "bg-green-500/20 text-green-400"
+                  : proposal.status === "Passed"
+                  ? "bg-blue-500/20 text-blue-400"
+                  : "bg-red-500/20 text-red-400"
+              }`}
+            >
               {proposal.status}
             </div>
           </div>
@@ -90,14 +106,20 @@ const ProposalDetailPage: React.FC = () => {
 
           {/* Description */}
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-white mb-4">Description</h2>
-            <p className="text-gray-300 leading-relaxed">{proposal.description}</p>
+            <h2 className="text-xl font-semibold text-white mb-4">
+              Description
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              {proposal.description}
+            </p>
           </div>
 
           {/* Voting Section */}
           <div className="bg-background/50 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-white mb-6">Current Voting Results</h3>
-            
+            <h3 className="text-lg font-semibold text-white mb-6">
+              Current Voting Results
+            </h3>
+
             {/* Vote Progress Bars */}
             <div className="space-y-4 mb-6">
               <div>
@@ -106,7 +128,9 @@ const ProposalDetailPage: React.FC = () => {
                     <ThumbsUp className="h-4 w-4" />
                     <span>For ({proposal.votesFor} votes)</span>
                   </span>
-                  <span className="text-green-400 font-semibold">{forPercentage.toFixed(1)}%</span>
+                  <span className="text-green-400 font-semibold">
+                    {forPercentage.toFixed(1)}%
+                  </span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-3">
                   <div
@@ -122,7 +146,9 @@ const ProposalDetailPage: React.FC = () => {
                     <ThumbsDown className="h-4 w-4" />
                     <span>Against ({proposal.votesAgainst} votes)</span>
                   </span>
-                  <span className="text-red-400 font-semibold">{againstPercentage.toFixed(1)}%</span>
+                  <span className="text-red-400 font-semibold">
+                    {againstPercentage.toFixed(1)}%
+                  </span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-3">
                   <div
@@ -138,16 +164,20 @@ const ProposalDetailPage: React.FC = () => {
               <p className="text-2xl font-bold text-white mb-2">
                 {proposal.votesFor} For / {proposal.votesAgainst} Against
               </p>
-              <p className="text-gray-400">Total Votes: {proposal.totalVotes}</p>
+              <p className="text-gray-400">
+                Total Votes: {proposal.totalVotes}
+              </p>
             </div>
 
             {/* Voting Buttons */}
-            {proposal.status === 'Active' && (
+            {proposal.status === "Active" && (
               <div className="flex flex-col sm:flex-row gap-4">
                 {hasAlreadyVoted ? (
                   <div className="text-center p-4 bg-green-500/20 rounded-lg border border-green-500/30">
                     <Vote className="h-6 w-6 text-green-400 mx-auto mb-2" />
-                    <p className="text-green-400 font-medium">You have voted on this proposal</p>
+                    <p className="text-green-400 font-medium">
+                      You have voted on this proposal
+                    </p>
                   </div>
                 ) : isConnected ? (
                   <>
@@ -168,8 +198,12 @@ const ProposalDetailPage: React.FC = () => {
                   </>
                 ) : (
                   <div className="text-center p-4 bg-accent-purple/20 rounded-lg border border-accent-purple/30">
-                    <p className="text-gray-400 mb-2">Connect your wallet to vote</p>
-                    <p className="text-accent-purple text-sm">Only scroll holders can participate in governance</p>
+                    <p className="text-gray-400 mb-2">
+                      Connect your wallet to vote
+                    </p>
+                    <p className="text-accent-purple text-sm">
+                      Only scroll holders can participate in governance
+                    </p>
                   </div>
                 )}
               </div>
@@ -186,7 +220,9 @@ const ProposalDetailPage: React.FC = () => {
           <div className="text-center py-12">
             <MessageSquare className="h-16 w-16 text-gray-500 mx-auto mb-4" />
             <p className="text-gray-400 mb-2">Discussion feature coming soon</p>
-            <p className="text-gray-500 text-sm">Community members will be able to discuss proposals here</p>
+            <p className="text-gray-500 text-sm">
+              Community members will be able to discuss proposals here
+            </p>
           </div>
         </div>
       </div>

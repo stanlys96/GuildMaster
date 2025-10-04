@@ -105,7 +105,7 @@ const DiscoverPage: React.FC = () => {
                     </div>
                   </div>
                   <Link
-                    to={`/guild/${guild.id}`}
+                    to={`/portfolio/guild/${guild.id}`}
                     className="w-full bg-gradient-to-r from-accent-purple to-accent-blue hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-purple-500/25 flex items-center justify-center"
                   >
                     View Guild
@@ -165,7 +165,7 @@ const DiscoverPage: React.FC = () => {
                     </div>
                   </div>
                   <Link
-                    to={`/guild/${guild.id}`}
+                    to={`/portfolio/guild/${guild.id}`}
                     className="w-full bg-gradient-to-r from-accent-purple to-accent-blue hover:from-purple-600 hover:to-blue-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center"
                   >
                     View Guild

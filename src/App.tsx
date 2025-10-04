@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<DiscoverPage />} />
-          <Route path="/guild/:id" element={<GuildDetailPage />} />
+          <Route path="/portfolio/guild/:id" element={<GuildDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/proposal/:id" element={<ProposalDetailPage />} />
           <Route path="/store" element={<StorePage />} />
