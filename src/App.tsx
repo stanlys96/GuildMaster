@@ -12,7 +12,7 @@ function App() {
   return (
     <WalletProvider>
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<DiscoverPage />} />
           <Route path="/portfolio/guild/:id" element={<GuildDetailPage />} />

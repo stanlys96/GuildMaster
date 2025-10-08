@@ -1,6 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fredoka-medium {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+* {
+  font-family: "Fredoka", sans-serif;
+}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(180deg);
@@ -10,4 +23,75 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(40%) sepia(100%) saturate(500%) hue-rotate(200deg);
   cursor: pointer;
+}
+
+.favorite-vtuber {
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  animation: scroll 25s linear infinite;
+  cursor: pointer;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Scroll upwards */
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-up {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-up 20s linear infinite;
+  cursor: pointer;
+}
+
+/* Scroll downwards */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-scroll-down {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-down 20s linear infinite;
+  cursor: pointer;
+}
+
+.animate-scroll-down:hover,
+.animate-scroll-up:hover {
+  animation-play-state: paused;
 }

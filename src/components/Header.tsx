@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Sword, Wallet } from "lucide-react";
+import { PersonStandingIcon, Sword, Wallet } from "lucide-react";
 import { useWallet } from "../contexts/WalletContext";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
@@ -29,9 +29,9 @@ const Header: React.FC = () => {
             to="/"
             className="flex items-center space-x-2 text-xl font-bold text-white hover:text-accent-purple transition-colors"
           >
-            <Sword className="h-6 w-6 text-accent-purple" />
+            <PersonStandingIcon className="h-6 w-6 text-accent-purple" />
             <span className="bg-gradient-to-r from-accent-purple to-accent-blue bg-clip-text text-transparent">
-              GuildMasters
+              AlterFun
             </span>
           </Link>
 
