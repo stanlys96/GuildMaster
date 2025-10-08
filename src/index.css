@@ -95,3 +95,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .animate-scroll-up:hover {
   animation-play-state: paused;
 }
+
+.the-navbar {
+  z-index: 10000000 !important;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-type Variant = "primary" | "secondary" | "danger" | "ghost";
+type Variant = "primary" | "secondary" | "danger" | "ghost" | "green";
 type Size = "sm" | "md" | "lg";
 
 interface GradientButtonProps
@@ -34,6 +34,8 @@ const VARIANT_GRADIENTS: Record<Variant, string> = {
   danger:
     "bg-gradient-to-r from-red-500 via-amber-500 to-rose-500 hover:from-red-600 hover:via-amber-600 hover:to-rose-600",
   ghost: "bg-transparent",
+  green:
+    "bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500 hover:from-green-600 hover:via-emerald-600 hover:to-lime-600",
 };
 
 const SIZE_CLASSES: Record<Size, string> = {
