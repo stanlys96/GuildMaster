@@ -9,6 +9,7 @@ import {
   Search,
   ShoppingBag,
   ArrowRight,
+  Image,
 } from "lucide-react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { BsPatchCheckFill, BsShop, BsShopWindow } from "react-icons/bs";
@@ -16,6 +17,9 @@ import GradientButton from "../components/GradientButton";
 import { FaDonate } from "react-icons/fa";
 import { FaqItem } from "../components/FaqItem";
 import Navbar from "../components/Navbar";
+import { MdArticle } from "react-icons/md";
+import { FcGallery } from "react-icons/fc";
+import { LuGalleryHorizontal } from "react-icons/lu";
 
 interface Testimonial {
   name: string;
@@ -294,15 +298,44 @@ const DiscoverPage: React.FC = () => {
                   {repeated.map((t, i) => (
                     <div
                       key={i}
-                      className="bg-gray-50 rounded-xl shadow-lg p-6 text-center flex-shrink-0"
+                      className="bg-gray-50 rounded-xl shadow-lg flex-shrink-0"
                       style={{ boxShadow: "0 8px 15px rgba(0,0,0,0.4)" }} // thick bottom shadow
                     >
                       <img
                         src="https://new.trakteer.id/_assets/v11/58f22ed129686b82f48cdeee35ef5796e98ef74d.png"
-                        className="w-[100px] h-[100px] mx-auto mb-2 rounded-md"
+                        className="w-full h-[200px] mx-auto mb-2 rounded-t-md"
                       />
-                      <p className="text-gray-700 italic mb-2">"{t.text}"</p>
-                      <h3 className="font-semibold text-gray-900">{t.name}</h3>
+                      <div className="pb-4 px-3 flex flex-col gap-y-2">
+                        <div className="flex gap-x-2 items-center">
+                          <img
+                            className="w-[20px] h-[20px] rounded-full"
+                            src="https://new.trakteer.id/_assets/v11/58f22ed129686b82f48cdeee35ef5796e98ef74d.png"
+                          />
+                          <p className="text-black font-semibold">{t.name}</p>
+                          <BsPatchCheckFill
+                            size={15}
+                            className="text-blue-500"
+                          />
+                        </div>
+                        <h3 className="text-black">{t.text}</h3>
+                        <p className="text-[#E50027] font-semibold text-[20px]">
+                          Rp 25.000
+                        </p>
+                        <div className="flex flex-row gap-2 items-center flex-wrap">
+                          <div className="p-1 border border-[#BCBCBC] rounded-md">
+                            <p className="text-[#525252] text-[12px] flex flex-row gap-x-1 items-center">
+                              <MdArticle size={12} />
+                              Article
+                            </p>
+                          </div>
+                          <div className="p-1 border border-[#BCBCBC] rounded-md">
+                            <p className="text-[#525252] text-[12px] flex flex-row gap-x-1 items-center">
+                              <Image size={12} />
+                              Gallery
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -312,15 +345,44 @@ const DiscoverPage: React.FC = () => {
                   {repeated.map((t, i) => (
                     <div
                       key={i}
-                      className="bg-gray-50 rounded-xl shadow-lg p-6 text-center flex-shrink-0"
+                      className="bg-gray-50 rounded-xl shadow-lg flex-shrink-0"
                       style={{ boxShadow: "0 8px 15px rgba(0,0,0,0.4)" }} // thick bottom shadow
                     >
                       <img
                         src="https://new.trakteer.id/_assets/v11/58f22ed129686b82f48cdeee35ef5796e98ef74d.png"
-                        className="w-[100px] h-[100px] mx-auto mb-2 rounded-md"
+                        className="w-full h-[200px] mx-auto mb-2 rounded-t-md"
                       />
-                      <p className="text-gray-700 italic mb-2">"{t.text}"</p>
-                      <h3 className="font-semibold text-gray-900">{t.name}</h3>
+                      <div className="pb-4 px-3 flex flex-col gap-y-2">
+                        <div className="flex gap-x-2 items-center">
+                          <img
+                            className="w-[20px] h-[20px] rounded-full"
+                            src="https://new.trakteer.id/_assets/v11/58f22ed129686b82f48cdeee35ef5796e98ef74d.png"
+                          />
+                          <p className="text-black font-semibold">{t.name}</p>
+                          <BsPatchCheckFill
+                            size={15}
+                            className="text-blue-500"
+                          />
+                        </div>
+                        <h3 className="text-black">{t.text}</h3>
+                        <p className="text-[#E50027] font-semibold text-[20px]">
+                          Rp 25.000
+                        </p>
+                        <div className="flex flex-row gap-2 items-center flex-wrap">
+                          <div className="p-1 border border-[#BCBCBC] rounded-md">
+                            <p className="text-[#525252] text-[12px] flex flex-row gap-x-1 items-center">
+                              <MdArticle size={12} />
+                              Article
+                            </p>
+                          </div>
+                          <div className="p-1 border border-[#BCBCBC] rounded-md">
+                            <p className="text-[#525252] text-[12px] flex flex-row gap-x-1 items-center">
+                              <Image size={12} />
+                              Gallery
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
