@@ -13,7 +13,10 @@ export default function Navbar({ visible }: NavbarProps) {
       ${visible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="max-w-6xl bg-white border-l border-r border-b border-[#000000] z-100000 mx-auto rounded-b-lg shadow-md p-4 text-black flex justify-between items-center">
-        <img className="w-[150px]" src="/images/alterfun-white.jpeg" />
+        <div className="flex items-center">
+          <img className="h-[40px] w-[40px]" src="/images/dog.png" />
+          <img className="w-[150px]" src="/images/alterfun-white.jpeg" />
+        </div>
         <ul className="flex space-x-2">
           <li>
             <GradientButton onClick={() => {}}>

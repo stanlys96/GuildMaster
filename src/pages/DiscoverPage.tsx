@@ -139,7 +139,7 @@ const DiscoverPage: React.FC = () => {
               to="/"
               className="flex items-center mb-2 justify-center space-x-2 text-xl font-bold text-white hover:text-accent-purple transition-colors"
             >
-              <PersonStandingIcon className="h-[40px] w-[40px] text-accent-purple" />
+              <img className="h-[40px] w-[40px]" src="/images/dog.png" />
               <span className="bg-gradient-to-r text-[40px] from-accent-purple to-accent-blue bg-clip-text text-transparent">
                 AlterFun
               </span>
@@ -243,7 +243,7 @@ const DiscoverPage: React.FC = () => {
           <div className="flex items-center justify-center">
             <div className="flex flex-row justify-center items-center">
               <div className="flex flex-col items-center justify-center mx-auto">
-                <div className="flex flex-row gap-x-2 items-center justify-center">
+                <div className="flex flex-row gap-x-2 items-center justify-center mb-4">
                   <FaDonate color="white" size={35} />
                   <div>
                     <p className="text-white">AlterFun Earn</p>
@@ -426,7 +426,18 @@ const DiscoverPage: React.FC = () => {
             </div>
           </div>
         </section>
-        <section className="py-16 bg-surface/30 px-16 text-white">
+        <section className="p-16 text-white bg-surface/30">
+          <p className="text-[28px] font-semibold text-center">
+            Own a fraction of the Intellectual Property (IP) that you love!
+          </p>
+          <DotLottieReact
+            className="w-[500px] mx-auto mt-5"
+            src="https://lottie.host/4849587d-cce5-41e8-81ab-e66f638a33ad/DtrcAhE0Bk.lottie"
+            loop
+            autoplay
+          />
+        </section>
+        <section className="py-16 px-16 text-white">
           <p className="text-center text-[28px] font-semibold">
             Frequently Asked Questions (FAQ)
           </p>
@@ -452,7 +463,7 @@ const DiscoverPage: React.FC = () => {
             />
           </div>
         </section>
-        <section className="py-16 bg-surface px-16 text-white">
+        <section className="py-16 bg-surface/30 px-16 text-white">
           <div className="rounded-md bg-[#204D83] p-16 flex gap-x-2">
             <div className="flex flex-col gap-y-5">
               <p className="text-[28px] font-semibold">
