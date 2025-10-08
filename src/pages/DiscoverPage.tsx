@@ -121,6 +121,13 @@ const DiscoverPage: React.FC = () => {
       <Navbar visible={navbarVisible} />
       {/* Hero Section */}
       <section className="flex justify-center items-center relative bg-gradient-to-br from-surface via-background to-dark-900 py-20 h-[90vh] w-[100vw]">
+        <div className="absolute top-5 right-16">
+          <GradientButton onClick={() => {}}>
+            <p className="text-white flex gap-x-2 items-center">
+              Login <ArrowRight />
+            </p>
+          </GradientButton>
+        </div>
         <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1254736/pexels-photo-1254736.jpeg?auto=compress&cs=tinysrgb&w=1600')] bg-cover bg-center opacity-10"></div>
         <div className="flex flex-row items-center justify-center">
           <div>
