@@ -35,10 +35,13 @@ export const LoginPage = () => {
           id: "login",
           duration: Infinity,
         });
-        const response = await axios.post("http://localhost:3001/users/login", {
-          email: values.email,
-          password: values.password,
-        });
+        const response = await axios.post(
+          "https://alterfun-server-production.up.railway.app/users/login",
+          {
+            email: values.email,
+            password: values.password,
+          }
+        );
         if (!response.data.success) {
           toast.error(response.data.message, {
             id: toastId,

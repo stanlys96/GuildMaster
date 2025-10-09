@@ -55,7 +55,7 @@ export const RegisterPage = () => {
           duration: Infinity,
         });
         const response = await axios.post(
-          "http://localhost:3001/users/register",
+          "https://alterfun-server-production.up.railway.app/users/register",
           {
             username: values.username,
             email: values.email,
