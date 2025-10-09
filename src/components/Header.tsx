@@ -15,10 +15,10 @@ import { SiDiscover } from "react-icons/si";
 import { RiRegisteredFill } from "react-icons/ri";
 
 interface Props {
-  register?: boolean;
+  element?: React.ReactNode;
 }
 
-const Header: React.FC<Props> = ({ register }: Props) => {
+const Header: React.FC<Props> = ({ element }: Props) => {
   const location = useLocation();
   const { isConnected, walletAddress, connect } = useWallet();
 
@@ -76,22 +76,7 @@ const Header: React.FC<Props> = ({ register }: Props) => {
 
           {/* Wallet Connection */}
           {/* <WalletMultiButton onClick={connect} /> */}
-          <div className="text-white">
-            {register ? (
-              <Link to="/login" className="flex flex-row items-center gap-x-2">
-                <LogIn size={20} color="white" />
-                <p className="text-[14px]">Login</p>
-              </Link>
-            ) : (
-              <Link
-                to="/register"
-                className="flex flex-row items-center gap-x-2"
-              >
-                <RiRegisteredFill size={20} color="white" />
-                <p className="text-[14px]">Register</p>
-              </Link>
-            )}
-          </div>
+          <div className="text-white">{element}</div>
         </div>
       </div>
     </header>

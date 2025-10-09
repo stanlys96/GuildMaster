@@ -9,6 +9,7 @@ import ProposalDetailPage from "./pages/ProposalDetailPage";
 import StorePage from "./pages/StorePage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
+import { ManagePage } from "./pages/ManagePage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/store" element={<StorePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/manage" element={<ManagePage />} />
         </Routes>
       </Router>
     </WalletProvider>

@@ -5,7 +5,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LogIn } from "lucide-react";
 
 interface RegisterFormikProps {
   username: string;
@@ -88,7 +89,14 @@ export const RegisterPage = () => {
   });
   return (
     <div>
-      <Header register={true} />
+      <Header
+        element={
+          <Link to="/login" className="flex flex-row items-center gap-x-2">
+            <LogIn size={20} color="white" />
+            <p className="text-[14px]">Login</p>
+          </Link>
+        }
+      />
       <section className="flex relative justify-center text-white bg-gradient-to-br from-surface via-background to-dark-900 py-8 h-[90vh] w-[100vw]">
         <div className="w-full px-[100px]">
           <div className="flex flex-col gap-y-5">

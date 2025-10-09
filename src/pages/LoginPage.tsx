@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 import { toast } from "sonner";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { RiRegisteredFill } from "react-icons/ri";
 
 interface FormikProps {
   email: string;
@@ -49,6 +50,7 @@ export const LoginPage = () => {
             duration: 4000,
           });
           createFormik.resetForm();
+          navigate("/manage");
         }
 
         setLoading(false);
@@ -64,7 +66,14 @@ export const LoginPage = () => {
   });
   return (
     <div>
-      <Header register={false} />
+      <Header
+        element={
+          <Link to="/register" className="flex flex-row items-center gap-x-2">
+            <RiRegisteredFill size={20} color="white" />
+            <p className="text-[14px]">Register</p>
+          </Link>
+        }
+      />
       <section className="flex relative justify-center text-white bg-gradient-to-br from-surface via-background to-dark-900 py-8 h-[90vh] w-[100vw]">
         <div className="w-full px-[100px]">
           <form onSubmit={createFormik.handleSubmit}>
