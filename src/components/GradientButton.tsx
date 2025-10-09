@@ -55,6 +55,7 @@ export default function GradientButton({
   className = "",
   disabled,
   onClick,
+  type = "button",
   ...rest
 }: GradientButtonProps) {
   const isGhost = variant === "ghost";
@@ -73,7 +74,7 @@ export default function GradientButton({
   return (
     <button
       onClick={onClick}
-      type="button"
+      type={type}
       className={classes}
       aria-busy={loading}
       aria-disabled={disabled || loading}
@@ -96,8 +97,8 @@ export default function GradientButton({
       )}
 
       {/* Content & loading spinner */}
-      <span className="relative flex items-center">
-        {loading ? (
+      <span className="relative flex items-center gap-x-2">
+        {loading && (
           <svg
             className="animate-spin h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
@@ -119,9 +120,8 @@ export default function GradientButton({
               d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
             ></path>
           </svg>
-        ) : (
-          children
         )}
+        {children}
       </span>
 
       {/* Right icon slot */}

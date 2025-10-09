@@ -20,6 +20,7 @@
     "@solana/wallet-adapter-wallets": "^0.19.37",
     "@solana/web3.js": "^1.98.4",
     "antd": "^5.27.4",
+    "axios": "^1.12.2",
     "buffer": "^6.0.3",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.22",
@@ -30,6 +31,7 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.26.1",
     "sonner": "^2.0.7",
+    "swal": "^0.1.0",
     "sweetalert2": "^11.23.0",
     "yup": "^1.7.0"
   },
