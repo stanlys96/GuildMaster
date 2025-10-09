@@ -1,12 +1,14 @@
 import React from "react";
 import GradientButton from "./GradientButton";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface NavbarProps {
   visible: boolean;
 }
 
 export default function Navbar({ visible }: NavbarProps) {
+  const navigate = useNavigate();
   return (
     <nav
       className={`fixed the-navbar top-0 left-0 w-full transition-transform duration-500 ease-in-out
@@ -19,14 +21,17 @@ export default function Navbar({ visible }: NavbarProps) {
         </div>
         <ul className="flex space-x-2">
           <li>
-            <GradientButton onClick={() => {}}>
+            <GradientButton onClick={() => navigate("/login")}>
               <p className="text-white flex gap-x-2 items-center">
                 Login <ArrowRight />
               </p>
             </GradientButton>
           </li>
           <li>
-            <GradientButton variant="green" onClick={() => {}}>
+            <GradientButton
+              variant="green"
+              onClick={() => navigate("/register")}
+            >
               <p className="text-white flex gap-x-2 items-center">
                 Register <ArrowRight />
               </p>

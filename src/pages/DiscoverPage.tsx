@@ -20,6 +20,7 @@ import Navbar from "../components/Navbar";
 import { MdArticle } from "react-icons/md";
 import { FcGallery } from "react-icons/fc";
 import { LuGalleryHorizontal } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 interface Testimonial {
   name: string;
@@ -99,6 +100,7 @@ const paymentMethodImages = [
 ];
 
 const DiscoverPage: React.FC = () => {
+  const navigate = useNavigate();
   const repeated = [...testimonials, ...testimonials];
   const [navbarVisible, setNavbarVisible] = useState(false);
 
@@ -121,18 +123,18 @@ const DiscoverPage: React.FC = () => {
     return () => observer.disconnect();
   }, []);
   return (
-    <div className="min-h-screen bg-background w-[100vw]">
+    <div className="min-h-screen bg-background w-[100vw] relative">
       <Navbar visible={navbarVisible} />
       {/* Hero Section */}
       <section className="flex justify-center items-center relative bg-gradient-to-br from-surface via-background to-dark-900 py-20 h-[90vh] w-[100vw]">
+        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1254736/pexels-photo-1254736.jpeg?auto=compress&cs=tinysrgb&w=1600')] bg-cover bg-center opacity-10"></div>
         <div className="absolute top-5 right-16">
-          <GradientButton onClick={() => {}}>
+          <GradientButton onClick={() => navigate("/login")}>
             <p className="text-white flex gap-x-2 items-center">
               Login <ArrowRight />
             </p>
           </GradientButton>
         </div>
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1254736/pexels-photo-1254736.jpeg?auto=compress&cs=tinysrgb&w=1600')] bg-cover bg-center opacity-10"></div>
         <div className="flex flex-row items-center justify-center">
           <div>
             <Link

@@ -58,11 +58,11 @@ export default function GradientButton({
   ...rest
 }: GradientButtonProps) {
   const isGhost = variant === "ghost";
-  const base = `items-center focus-visible:outline-none max-w-fit justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-30`;
+  const base = `items-center focus-visible:outline-none justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-opacity-30`;
 
   const gradient = isGhost ? "" : VARIANT_GRADIENTS[variant];
   const sizeCls = SIZE_CLASSES[size];
-  const widthCls = fullWidth ? "w-full" : "";
+  const widthCls = fullWidth ? "w-full" : "max-w-fit";
   const opacityDisabled =
     disabled || loading ? "opacity-70 cursor-not-allowed" : "hover:shadow-lg";
 

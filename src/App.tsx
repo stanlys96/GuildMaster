@@ -7,6 +7,8 @@ import GuildDetailPage from "./pages/GuildDetailPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import ProposalDetailPage from "./pages/ProposalDetailPage";
 import StorePage from "./pages/StorePage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/proposal/:id" element={<ProposalDetailPage />} />
           <Route path="/store" element={<StorePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Router>
     </WalletProvider>

@@ -1,10 +1,24 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { PersonStandingIcon, Sword, Wallet } from "lucide-react";
+import {
+  Book,
+  LogIn,
+  LogOut,
+  PersonStandingIcon,
+  Search,
+  Sword,
+  Wallet,
+} from "lucide-react";
 import { useWallet } from "../contexts/WalletContext";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { SiDiscover } from "react-icons/si";
+import { RiRegisteredFill } from "react-icons/ri";
 
-const Header: React.FC = () => {
+interface Props {
+  register?: boolean;
+}
+
+const Header: React.FC<Props> = ({ register }: Props) => {
   const location = useLocation();
   const { isConnected, walletAddress, connect } = useWallet();
 
@@ -15,9 +29,16 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { path: "/", label: "Discover" },
-    { path: "/portfolio", label: "My Portfolio" },
-    { path: "/store", label: "Store" },
+    {
+      path: "/login",
+      label: "Explore",
+      icon: <Book size={15} color="white" />,
+    },
+    {
+      path: "/register",
+      label: "Search",
+      icon: <Search size={15} color="white" />,
+    },
   ];
 
   return (
@@ -29,7 +50,7 @@ const Header: React.FC = () => {
             to="/"
             className="flex items-center space-x-2 text-xl font-bold text-white hover:text-accent-purple transition-colors"
           >
-            <PersonStandingIcon className="h-6 w-6 text-accent-purple" />
+            <img src="/images/dog.png" className="w-[40px] h-[40px]" />
             <span className="bg-gradient-to-r from-accent-purple to-accent-blue bg-clip-text text-transparent">
               AlterFun
             </span>
@@ -41,19 +62,36 @@ const Header: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 ${
+                className={`text-sm flex flex-row gap-x-1 items-center font-medium transition-colors duration-200 ${
                   isActive(item.path)
                     ? "text-accent-purple border-b-2 border-accent-purple pb-1"
                     : "text-gray-300 hover:text-white"
                 }`}
               >
+                {item.icon}
                 {item.label}
               </Link>
             ))}
           </nav>
 
           {/* Wallet Connection */}
-          <WalletMultiButton onClick={connect} />
+          {/* <WalletMultiButton onClick={connect} /> */}
+          <div className="text-white">
+            {register ? (
+              <Link to="/login" className="flex flex-row items-center gap-x-2">
+                <LogIn size={20} color="white" />
+                <p className="text-[14px]">Login</p>
+              </Link>
+            ) : (
+              <Link
+                to="/register"
+                className="flex flex-row items-center gap-x-2"
+              >
+                <RiRegisteredFill size={20} color="white" />
+                <p className="text-[14px]">Register</p>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </header>
