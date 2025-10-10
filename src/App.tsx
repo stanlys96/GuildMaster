@@ -13,6 +13,7 @@ import { ManagePage } from "./pages/ManagePage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { BalancePage } from "./pages/BalancePage";
 import { UserPage } from "./pages/UserPage";
+import { ShopPage } from "./pages/ShopPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/balance" element={<BalancePage />} />
           <Route path="/user/:username" element={<UserPage />} />
+          <Route path="/:username/shop/:product_name" element={<ShopPage />} />
         </Routes>
       </Router>
     </WalletProvider>

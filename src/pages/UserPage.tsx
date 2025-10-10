@@ -6,6 +6,8 @@ import {
   PersonStanding,
   PersonStandingIcon,
   Save,
+  Image,
+  Dot,
 } from "lucide-react";
 import { Sidebar } from "../components/Sidebar";
 import { useFormik } from "formik";
@@ -15,12 +17,16 @@ import { BsPatchCheckFill } from "react-icons/bs";
 import { BiMoney, BiSupport } from "react-icons/bi";
 import { TfiSupport } from "react-icons/tfi";
 import { TbMailFilled } from "react-icons/tb";
-import { MdMoney } from "react-icons/md";
+import { MdArticle, MdMoney } from "react-icons/md";
 import { CiMoneyBill } from "react-icons/ci";
 import { DonateComponent } from "../components/DonateComponent";
+import { useState } from "react";
+import { StarFilledIcon } from "@radix-ui/react-icons";
+import { ShopComponent } from "../components/ShopComponent";
 
 export const UserPage = () => {
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState("home");
   const createFormik = useFormik<any>({
     initialValues: {
       username: "",
@@ -89,75 +95,102 @@ export const UserPage = () => {
               src="https://mirror-uploads.trakteer.id/images/cover/cvr-MNPBxwjZC4y24P6fg7yC4TVbhREM2XXx1707364293.jpg"
               className="w-full h-[225px] rounded-md"
             />
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <div className="flex flex-row items-center gap-x-2">
-                  <div className="border bg-[#88888830] border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit">
-                    <p>Home</p>
-                  </div>
-                  <div className="border border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit">
-                    <p>Shop</p>
-                  </div>
-                  <div className="border border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit">
-                    <p>AlterFun</p>
-                  </div>
+            <div>
+              <div className="flex flex-row items-center gap-x-2">
+                <div
+                  onClick={() => setSelectedCategory("home")}
+                  className={`border ${
+                    selectedCategory === "home" ? "bg-[#88888830]" : ""
+                  } border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit`}
+                >
+                  <p>Home</p>
                 </div>
-                <div className="p-2 mt-4">
-                  <div className="border border-[#88888850] rounded-md px-4 py-3 flex flex-col gap-y-3">
-                    <input
-                      id="name"
-                      name="name"
-                      type="name"
-                      onBlur={createFormik.handleBlur}
-                      value={createFormik.values.repeatPassword}
-                      onChange={createFormik.handleChange}
-                      placeholder="Name"
-                      className={`text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
-                        false
-                          ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
-                          : "dark:bg-zinc-800 bg-[#2D2F33]"
-                      }`}
-                      disabled={false}
-                    />
-                    <textarea
-                      id="name"
-                      name="name"
-                      rows={5}
-                      onBlur={createFormik.handleBlur}
-                      value={createFormik.values.repeatPassword}
-                      onChange={createFormik.handleChange}
-                      placeholder="Support Message"
-                      className={`text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
-                        false
-                          ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
-                          : "dark:bg-zinc-800 bg-[#2D2F33]"
-                      }`}
-                      disabled={false}
-                    />
-                    <GradientButton
-                      className="flex justify-center items-center"
-                      fullWidth
-                      onClick={() => {}}
-                    >
-                      <BiMoney />
-                      <p className="text-white flex gap-x-2 items-center">
-                        Send Support
-                      </p>
-                    </GradientButton>
-                  </div>
+                <div
+                  onClick={() => setSelectedCategory("shop")}
+                  className={`border ${
+                    selectedCategory === "shop" ? "bg-[#88888830]" : ""
+                  } border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit`}
+                >
+                  <p>Shop</p>
                 </div>
-                <div className="flex flex-col gap-y-4 mt-4">
-                  <DonateComponent />
-                  <DonateComponent />
-                  <DonateComponent />
-                  <DonateComponent />
-                  <DonateComponent />
+                <div
+                  onClick={() => setSelectedCategory("alterfun")}
+                  className={`border ${
+                    selectedCategory === "alterfun" ? "bg-[#88888830]" : ""
+                  } border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit`}
+                >
+                  <p>AlterFun</p>
                 </div>
               </div>
-              <div>
-                <p className="text-[24px]">About</p>
-                <p className="mt-4">Digital artist, comic, webtonist</p>
-              </div>
+              {selectedCategory === "home" && (
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <div className="p-2 mt-4">
+                      <div className="border border-[#88888850] rounded-md px-4 py-3 flex flex-col gap-y-3">
+                        <input
+                          id="name"
+                          name="name"
+                          type="name"
+                          onBlur={createFormik.handleBlur}
+                          value={createFormik.values.repeatPassword}
+                          onChange={createFormik.handleChange}
+                          placeholder="Name"
+                          className={`text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+                            false
+                              ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                              : "dark:bg-zinc-800 bg-[#2D2F33]"
+                          }`}
+                          disabled={false}
+                        />
+                        <textarea
+                          id="name"
+                          name="name"
+                          rows={5}
+                          onBlur={createFormik.handleBlur}
+                          value={createFormik.values.repeatPassword}
+                          onChange={createFormik.handleChange}
+                          placeholder="Support Message"
+                          className={`text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+                            false
+                              ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                              : "dark:bg-zinc-800 bg-[#2D2F33]"
+                          }`}
+                          disabled={false}
+                        />
+                        <GradientButton
+                          className="flex justify-center items-center"
+                          fullWidth
+                          onClick={() => {}}
+                        >
+                          <BiMoney />
+                          <p className="text-white flex gap-x-2 items-center">
+                            Send Support
+                          </p>
+                        </GradientButton>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-y-4 mt-4">
+                      <DonateComponent />
+                      <DonateComponent />
+                      <DonateComponent />
+                      <DonateComponent />
+                      <DonateComponent />
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[24px]">About</p>
+                    <p className="mt-4">Digital artist, comic, webtonist</p>
+                  </div>
+                </div>
+              )}
+              {selectedCategory === "shop" && (
+                <div className="grid grid-cols-3 gap-6 mt-4">
+                  <ShopComponent />
+                  <ShopComponent />
+                  <ShopComponent />
+                  <ShopComponent />
+                </div>
+              )}
             </div>
           </div>
         </div>
