@@ -21,6 +21,11 @@ import { MdArticle } from "react-icons/md";
 import { FcGallery } from "react-icons/fc";
 import { LuGalleryHorizontal } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import Top from "../../public/lottie/top.json";
+import Money from "../../public/lottie/money.json";
+import Payment from "../../public/lottie/payment.json";
+import Technology from "../../public/lottie/Technology.json";
 
 interface Testimonial {
   name: string;
@@ -167,10 +172,11 @@ const DiscoverPage: React.FC = () => {
             </div>
           </div>
           <div className="">
-            <DotLottieReact
-              src="https://lottie.host/9629a5ea-0d50-4aab-b697-371a421ec955/GPPnwg35TH.lottie"
-              loop
-              autoplay
+            <Lottie
+              animationData={Top}
+              loop={true}
+              autoplay={true}
+              className="w-[400px] h-[400px]"
             />
           </div>
         </div>
@@ -261,10 +267,11 @@ const DiscoverPage: React.FC = () => {
                 </div>
               </div>
               <div className="flex flex-row justify-center items-center">
-                <DotLottieReact
-                  src="https://lottie.host/aa12aad2-4278-4028-93e1-da29d7f33fb5/D4JkHAOANy.lottie"
-                  loop
-                  autoplay
+                <Lottie
+                  animationData={Money}
+                  loop={true}
+                  autoplay={true}
+                  className="w-[300px] h-[300px]"
                 />
               </div>
             </div>
@@ -418,25 +425,25 @@ const DiscoverPage: React.FC = () => {
                 </p>
               </GradientButton>
             </div>
-            <div className="">
-              <DotLottieReact
-                className="h-fit"
-                src="https://lottie.host/819209bc-8e6d-4b8e-ad67-aa02367b25e4/snoz8w2xpV.lottie"
-                loop
-                autoplay
+            <div className="flex justify-center items-center">
+              <Lottie
+                animationData={Payment}
+                loop={true}
+                autoplay={true}
+                className="w-[400px] h-[400px]"
               />
             </div>
           </div>
         </section>
-        <section className="p-16 text-white bg-surface/30">
+        <section className="p-16 text-white bg-surface/30 flex justify-center items-center flex-col gap-y-2">
           <p className="text-[28px] font-semibold text-center">
             Own a fraction of the Intellectual Property (IP) that you love!
           </p>
-          <DotLottieReact
-            className="w-[500px] mx-auto mt-5"
-            src="https://lottie.host/4849587d-cce5-41e8-81ab-e66f638a33ad/DtrcAhE0Bk.lottie"
-            loop
-            autoplay
+          <Lottie
+            animationData={Technology}
+            loop={true}
+            autoplay={true}
+            className="w-[300px] h-[300px]"
           />
         </section>
         <section className="py-16 px-16 text-white">

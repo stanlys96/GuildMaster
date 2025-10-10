@@ -12,6 +12,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { ManagePage } from "./pages/ManagePage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { BalancePage } from "./pages/BalancePage";
+import { UserPage } from "./pages/UserPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/explore" element={<ManagePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/balance" element={<BalancePage />} />
+          <Route path="/user/:username" element={<UserPage />} />
         </Routes>
       </Router>
     </WalletProvider>
