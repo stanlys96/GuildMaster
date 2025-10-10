@@ -1,9 +1,14 @@
 import { Stars } from "lucide-react";
 import { BsPatchCheckFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 export const CreatorComponent = () => {
+  const navigate = useNavigate();
   return (
-    <div className="border rounded-md border-[#88888850] cursor-pointer">
+    <div
+      onClick={() => navigate(`/user/${"kitsunex"}`)}
+      className="border rounded-md border-[#88888850] cursor-pointer"
+    >
       <div className="w-full h-[125px] overflow-hidden rounded-t-md">
         <img
           src="https://new.trakteer.id/_assets/v11/58f22ed129686b82f48cdeee35ef5796e98ef74d.png"
