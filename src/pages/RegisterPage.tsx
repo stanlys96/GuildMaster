@@ -14,6 +14,7 @@ interface RegisterFormikProps {
   email: string;
   password: string;
   repeatPassword: string;
+  creator: boolean;
 }
 
 export const RegisterPage = () => {
@@ -26,6 +27,7 @@ export const RegisterPage = () => {
       email: "",
       password: "",
       repeatPassword: "",
+      creator: false,
     },
     onSubmit: async (values) => {
       if (
@@ -87,6 +89,7 @@ export const RegisterPage = () => {
       }
     },
   });
+
   return (
     <div>
       <Header
@@ -187,6 +190,20 @@ export const RegisterPage = () => {
                 }`}
                 disabled={false}
               />
+              <div className="flex items-center justify-center gap-2">
+                <input
+                  checked={createFormik.values.creator}
+                  onChange={(e) =>
+                    createFormik.setFieldValue("creator", e.target.checked)
+                  }
+                  type="checkbox"
+                  id="accept"
+                  className="w-4 h-4 accent-green-600 cursor-pointer"
+                />
+                <label htmlFor="accept" className="text-sm cursor-pointer">
+                  Activate creator page
+                </label>
+              </div>
               <GradientButton
                 loading={loading}
                 type="submit"
