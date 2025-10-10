@@ -4,28 +4,23 @@ import {
   Users,
   Coins,
   TrendingUp,
-  PersonStandingIcon,
-  LucideVerified,
   Search,
-  ShoppingBag,
   ArrowRight,
   Image,
 } from "lucide-react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { BsPatchCheckFill, BsShop, BsShopWindow } from "react-icons/bs";
+import { BsPatchCheckFill, BsShopWindow } from "react-icons/bs";
 import GradientButton from "../components/GradientButton";
 import { FaDonate } from "react-icons/fa";
 import { FaqItem } from "../components/FaqItem";
 import Navbar from "../components/Navbar";
 import { MdArticle } from "react-icons/md";
-import { FcGallery } from "react-icons/fc";
-import { LuGalleryHorizontal } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import Top from "../../public/lottie/top.json";
 import Money from "../../public/lottie/money.json";
 import Payment from "../../public/lottie/payment.json";
 import Technology from "../../public/lottie/Technology.json";
+import Contract from "../../public/lottie/contract.json";
 
 interface Testimonial {
   name: string;
@@ -490,10 +485,11 @@ const DiscoverPage: React.FC = () => {
                 </p>
               </GradientButton>
             </div>
-            <DotLottieReact
-              src="https://lottie.host/cd9271b6-d508-4b0a-8fbb-7bf3f3af7984/BPkVWQAoxZ.lottie"
-              loop
-              autoplay
+            <Lottie
+              animationData={Contract}
+              loop={true}
+              autoplay={true}
+              className="w-full"
             />
           </div>
         </section>
