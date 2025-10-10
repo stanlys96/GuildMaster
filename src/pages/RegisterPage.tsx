@@ -52,7 +52,7 @@ export const RegisterPage = () => {
       }
       try {
         setLoading(true);
-        const toastId = toast.loading(`Logging in...`, {
+        const toastId = toast.loading(`Registering...`, {
           id: "login",
           duration: Infinity,
         });
@@ -63,6 +63,7 @@ export const RegisterPage = () => {
             email: values.email,
             name: values.name,
             password: values.password,
+            creator: values.creator,
           }
         );
         if (!response.data.success) {
