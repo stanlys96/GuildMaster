@@ -10,6 +10,8 @@ import StorePage from "./pages/StorePage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { ManagePage } from "./pages/ManagePage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { BalancePage } from "./pages/BalancePage";
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route path="/store" element={<StorePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/manage" element={<ManagePage />} />
+          <Route path="/explore" element={<ManagePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/balance" element={<BalancePage />} />
         </Routes>
       </Router>
     </WalletProvider>

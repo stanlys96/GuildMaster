@@ -2,13 +2,18 @@ import { IoStarOutline } from "react-icons/io5";
 import Header from "../components/Header";
 import { PersonStandingIcon } from "lucide-react";
 import { CreatorComponent } from "../components/CreatorComponent";
+import { useNavigate } from "react-router-dom";
 
 export const ManagePage = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Header
         element={
-          <div className="flex gap-x-2 items-center">
+          <div
+            onClick={() => navigate("/profile")}
+            className="flex gap-x-2 items-center cursor-pointer"
+          >
             <PersonStandingIcon size={30} />
             <div className="flex flex-col text-white">
               <p className="text-[12px]">Stanly Sukmajaya</p>

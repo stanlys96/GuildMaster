@@ -30,15 +30,29 @@ const Header: React.FC<Props> = ({ element }: Props) => {
 
   const navItems = [
     {
-      path: "/login",
+      path: "/explore",
       label: "Explore",
-      icon: <Book size={15} color="white" />,
+      icon: (
+        <Book
+          size={15}
+          color={`${
+            location.pathname.startsWith("/explore") ? "#9D4DDD" : "white"
+          }`}
+        />
+      ),
     },
-    {
-      path: "/register",
-      label: "Search",
-      icon: <Search size={15} color="white" />,
-    },
+    // {
+    //   path: "/search",
+    //   label: "Search",
+    //   icon: (
+    //     <Search
+    //       size={15}
+    //       color={`${
+    //         location.pathname.startsWith("/search") ? "#9D4DDD" : "white"
+    //       }`}
+    //     />
+    //   ),
+    // },
   ];
 
   return (
