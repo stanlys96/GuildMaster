@@ -6,7 +6,7 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <div className="h-[90vh] bg-background/80 flex flex-col border-r border-[#88888850] px-2 py-5">
+    <div className="min-h-[90vh] bg-background/80 flex flex-col border-r border-[#88888850] px-2 py-5">
       <div
         onClick={() => navigate("/profile")}
         className={`flex gap-x-2 rounded-full ${

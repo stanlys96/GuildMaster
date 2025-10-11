@@ -1,14 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { Mail, PersonStanding, PersonStandingIcon, Save } from "lucide-react";
+import {
+  BanknoteIcon,
+  Delete,
+  Eye,
+  Mail,
+  PersonStanding,
+  PersonStandingIcon,
+  Plus,
+  Save,
+  Trash,
+} from "lucide-react";
 import { Sidebar } from "../components/Sidebar";
 import { useFormik } from "formik";
 import { FcElectricity } from "react-icons/fc";
 import GradientButton from "../components/GradientButton";
 import TokenTicker from "../components/TokenTicker";
+import { AnimatedModal } from "../components/AnimatedModal";
+import { useState } from "react";
+import { SiDepositphotos } from "react-icons/si";
 
 export const AlterFunPage = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenTransaction, setIsOpenTransaction] = useState<boolean>(false);
   const createFormik = useFormik<any>({
     initialValues: {
       username: "",
@@ -41,41 +56,95 @@ export const AlterFunPage = () => {
         <div className="grid grid-cols-2 p-4 gap-4 w-fit">
           <div className="flex flex-col gap-y-4 w-full">
             <div>
-              <p>Your Token</p>
+              <p>Your Guild</p>
+              <p>Kitsune Power</p>
+            </div>
+            <div>
+              <p>Your Stock</p>
               <p>$KITSUNE</p>
             </div>
             <div>
-              <p>Your Token Price</p>
+              <p>Your Stock's Price</p>
               <p>Rp 15.123,00</p>
             </div>
-            <div className="bg-background p-3 rounded-lg w-full">
-              <p>Your Members</p>
-              <p>1. Naruto</p>
-              <p>2. Sasuke</p>
-              <p>3. Orochimaru</p>
-              <p>4. Boruto</p>
-              <p>5. Sakura</p>
-              <p>6. Kakeshi</p>
-              <p>7. Itachi</p>
+            <div
+              onClick={() => setIsOpen(true)}
+              className="bg-background p-3 rounded-lg w-fit cursor-pointer flex flex-row gap-x-2"
+            >
+              <Eye />
+              <p>See Your Members</p>
             </div>
           </div>
           <div>
             <div className="bg-surface rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
               <p className="text-left text-[20px]">Vault Balance</p>
-              <div className="flex flex-row gap-x-2 mt-2 items-center">
+              <div className="flex flex-row gap-x-4 mt-2 items-center">
                 <img className="w-[75px]" src="/images/sol.jpeg" />
                 <div>
                   <p className="text-[#787988]">SOL</p>
                   <p>0.00</p>
                 </div>
+                <GradientButton onClick={() => {}}>
+                  <span className="flex flex-row gap-x-2 items-center">
+                    <BanknoteIcon /> Deposit
+                  </span>
+                </GradientButton>
               </div>
-              <p className="text-left text-[20px] mt-2">Recent transactions</p>
-              <p className="text-[#787988]">No transactions yet</p>
+              <div
+                onClick={() => setIsOpenTransaction(true)}
+                className="bg-background p-3 rounded-lg  w-fit flex flex-row gap-x-2 items-center cursor-pointer mt-2"
+              >
+                <Eye />
+                <p className="text-left">See transactions</p>
+              </div>
             </div>
             <TokenTicker />
           </div>
         </div>
       </section>
+      <AnimatedModal
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+        className="text-white"
+      >
+        <div className="flex flex-col gap-y-2">
+          <div className="flex flex-row items-center w-full gap-x-4">
+            <p className="text-[24px] font-semibold">Your Members</p>
+            <GradientButton onClick={() => {}}>
+              <span className="flex flex-row gap-x-1 items-center">
+                <Plus /> Add Member
+              </span>
+            </GradientButton>
+          </div>
+          <p className="mt-4 flex items-center gap-x-2">1. Kakashi</p>
+          <p className="">2. Orochimaru</p>
+          <p className="">3. Kakeshi</p>
+          <p className="">4. Sakura</p>
+          <p className="">5. Naruto</p>
+          <p className="">6. Boruto</p>
+        </div>
+      </AnimatedModal>
+      <AnimatedModal
+        isOpen={isOpenTransaction}
+        onClose={() => {
+          setIsOpenTransaction(false);
+        }}
+        className="text-white"
+      >
+        <div className="flex flex-col gap-y-2">
+          <div className="flex flex-row items-center w-full gap-x-4">
+            <p className="text-[24px] font-semibold">Your Transactions</p>
+          </div>
+          <p className="mt-4 flex items-center gap-x-2">1. Kakashi</p>
+          <p className="">2. Orochimaru</p>
+          <p className="">3. Kakeshi</p>
+          <p className="">4. Sakura</p>
+          <p className="">5. Naruto</p>
+          <p className="">6. Boruto</p>
+        </div>
+      </AnimatedModal>
     </div>
   );
 };
