@@ -14,6 +14,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { BalancePage } from "./pages/BalancePage";
 import { UserPage } from "./pages/UserPage";
 import { ShopPage } from "./pages/ShopPage";
+import { AlterFunPage } from "./pages/AlterFunPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/balance" element={<BalancePage />} />
           <Route path="/user/:username" element={<UserPage />} />
           <Route path="/:username/shop/:product_name" element={<ShopPage />} />
+          <Route path="/alterfun" element={<AlterFunPage />} />
         </Routes>
       </Router>
     </WalletProvider>

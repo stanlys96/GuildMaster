@@ -1,4 +1,5 @@
 import { Edit, Wallet } from "lucide-react";
+import { BiHappy } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
@@ -23,6 +24,15 @@ export const Sidebar = () => {
       >
         <Wallet size={16} />
         <p>My Balance</p>
+      </div>
+      <div
+        onClick={() => navigate("/alterfun")}
+        className={`flex gap-x-2 rounded-full ${
+          location.pathname === "/alterfun" ? "bg-[#88888820]" : ""
+        } px-4 py-3 items-center cursor-pointer`}
+      >
+        <BiHappy size={16} />
+        <p>AlterFun</p>
       </div>
     </div>
   );
