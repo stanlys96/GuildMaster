@@ -7,7 +7,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { formatCurrencyFromString } from "../utils/helper";
 
 export default function LiveTokenWithWeeklyHistory() {
   // Helper: generate mock data for 7 days (every 2 hours)
@@ -53,9 +52,7 @@ export default function LiveTokenWithWeeklyHistory() {
       <div className="flex items-center justify-between">
         <div>
           <div className="text-lg font-semibold">KITSUNE / IDR</div>
-          <div className="text-3xl font-bold">
-            Rp {formatCurrencyFromString(price?.toString())}
-          </div>
+          <div className="text-3xl font-bold">Rp {price}</div>
         </div>
         <div
           className={`text-sm font-medium ${
@@ -105,9 +102,7 @@ export default function LiveTokenWithWeeklyHistory() {
                 className="flex justify-between border-b border-gray-800 pb-1"
               >
                 <span className="text-gray-400">{item.time}</span>
-                <span>
-                  Rp {formatCurrencyFromString(item.value.toFixed(2))}
-                </span>
+                <span>Rp {item.value.toFixed(2)}</span>
               </div>
             ))}
         </div>
