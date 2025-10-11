@@ -191,6 +191,7 @@ const DiscoverPage: React.FC = () => {
             <div className="animate-scroll flex gap-6">
               {repeated.map((t, i) => (
                 <div
+                  onClick={() => navigate("/user/kitsunex")}
                   key={i}
                   className="min-w-[300px] max-w-[300px] bg-gray-50 rounded-xl shadow-md p-6 text-center flex-shrink-0"
                 >
@@ -218,8 +219,9 @@ const DiscoverPage: React.FC = () => {
               <div className="grid grid-cols-3 gap-6 mx-auto">
                 {repeated.slice(0, 3).map((t, i) => (
                   <div
+                    onClick={() => navigate("/user/kitsunex")}
                     key={i}
-                    className="min-w-[300px] max-w-[300px] bg-gray-50 rounded-xl shadow-md p-6 text-center flex-shrink-0"
+                    className="min-w-[300px] cursor-pointer max-w-[300px] bg-gray-50 rounded-xl shadow-md p-6 text-center flex-shrink-0"
                   >
                     <img
                       src="https://new.trakteer.id/_assets/v11/58f22ed129686b82f48cdeee35ef5796e98ef74d.png"
@@ -302,7 +304,8 @@ const DiscoverPage: React.FC = () => {
                   {repeated.map((t, i) => (
                     <div
                       key={i}
-                      className="bg-gray-50 rounded-xl shadow-lg flex-shrink-0"
+                      onClick={() => navigate("/kitsunex/shop/audio_pack")}
+                      className="bg-gray-50 rounded-xl shadow-lg flex-shrink-0 cursor-pointer"
                       style={{ boxShadow: "0 8px 15px rgba(0,0,0,0.4)" }} // thick bottom shadow
                     >
                       <img
@@ -349,7 +352,8 @@ const DiscoverPage: React.FC = () => {
                   {repeated.map((t, i) => (
                     <div
                       key={i}
-                      className="bg-gray-50 rounded-xl shadow-lg flex-shrink-0"
+                      onClick={() => navigate("/kitsunex/shop/audio_pack")}
+                      className="bg-gray-50 rounded-xl shadow-lg flex-shrink-0 cursor-pointer"
                       style={{ boxShadow: "0 8px 15px rgba(0,0,0,0.4)" }} // thick bottom shadow
                     >
                       <img

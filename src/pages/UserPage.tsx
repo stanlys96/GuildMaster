@@ -8,6 +8,9 @@ import {
   Save,
   Image,
   Dot,
+  Eye,
+  BanknoteIcon,
+  Plus,
 } from "lucide-react";
 import { Sidebar } from "../components/Sidebar";
 import { useFormik } from "formik";
@@ -23,10 +26,14 @@ import { DonateComponent } from "../components/DonateComponent";
 import { useState } from "react";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { ShopComponent } from "../components/ShopComponent";
+import TokenTicker from "../components/TokenTicker";
+import { AnimatedModal } from "../components/AnimatedModal";
 
 export const UserPage = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("home");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenTransaction, setIsOpenTransaction] = useState<boolean>(false);
   const createFormik = useFormik<any>({
     initialValues: {
       username: "",
@@ -191,10 +198,101 @@ export const UserPage = () => {
                   <ShopComponent />
                 </div>
               )}
+              {selectedCategory === "alterfun" && (
+                <div className="grid grid-cols-2 p-4 gap-4 w-fit">
+                  <div className="flex flex-col gap-y-4 w-full">
+                    <div className="flex flex-row gap-x-4 items-center">
+                      <p>Guild: Kitsune Power</p>
+                      <GradientButton onClick={() => {}}>
+                        <span className="flex flex-row gap-x-2 items-center">
+                          <BanknoteIcon /> Deposit
+                        </span>
+                      </GradientButton>
+                    </div>
+
+                    <div>
+                      <p>Stock Name: $KITSUNE</p>
+                    </div>
+                    <div>
+                      <p>Price: Rp 15.123,00</p>
+                    </div>
+                    <div
+                      onClick={() => setIsOpen(true)}
+                      className="bg-background p-3 rounded-lg w-fit cursor-pointer flex flex-row gap-x-2"
+                    >
+                      <Eye />
+                      <p>See Members</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="bg-surface rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
+                      <p className="text-left text-[20px]">Vault Balance</p>
+                      <div className="flex flex-row gap-x-4 mt-2 items-center">
+                        <img className="w-[75px]" src="/images/sol.jpeg" />
+                        <div>
+                          <p className="text-[#787988]">SOL</p>
+                          <p>0.00</p>
+                        </div>
+                        {/* <GradientButton onClick={() => {}}>
+                          <span className="flex flex-row gap-x-2 items-center">
+                            <BanknoteIcon /> Deposit
+                          </span>
+                        </GradientButton> */}
+                      </div>
+                      <div
+                        onClick={() => setIsOpenTransaction(true)}
+                        className="bg-background p-3 rounded-lg  w-fit flex flex-row gap-x-2 items-center cursor-pointer mt-2"
+                      >
+                        <Eye />
+                        <p className="text-left">See transactions</p>
+                      </div>
+                    </div>
+                  </div>
+                  <TokenTicker />
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
+      <AnimatedModal
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+        className="text-white"
+      >
+        <div className="flex flex-col gap-y-2">
+          <div className="flex flex-row items-center w-full gap-x-4">
+            <p className="text-[24px] font-semibold">Members</p>
+          </div>
+          <p className="mt-4 flex items-center gap-x-2">1. Kakashi</p>
+          <p className="">2. Orochimaru</p>
+          <p className="">3. Kakeshi</p>
+          <p className="">4. Sakura</p>
+          <p className="">5. Naruto</p>
+          <p className="">6. Boruto</p>
+        </div>
+      </AnimatedModal>
+      <AnimatedModal
+        isOpen={isOpenTransaction}
+        onClose={() => {
+          setIsOpenTransaction(false);
+        }}
+        className="text-white"
+      >
+        <div className="flex flex-col gap-y-2">
+          <div className="flex flex-row items-center w-full gap-x-4">
+            <p className="text-[24px] font-semibold">Transactions</p>
+          </div>
+          <p className="mt-4 flex items-center gap-x-2">1. Kakashi</p>
+          <p className="">2. Orochimaru</p>
+          <p className="">3. Kakeshi</p>
+          <p className="">4. Sakura</p>
+          <p className="">5. Naruto</p>
+          <p className="">6. Boruto</p>
+        </div>
+      </AnimatedModal>
     </div>
   );
 };

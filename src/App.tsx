@@ -15,11 +15,13 @@ import { BalancePage } from "./pages/BalancePage";
 import { UserPage } from "./pages/UserPage";
 import { ShopPage } from "./pages/ShopPage";
 import { AlterFunPage } from "./pages/AlterFunPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <WalletProvider>
       <Router>
+        <ScrollToTop />
         {/* <Header /> */}
         <Routes>
           <Route path="/" element={<DiscoverPage />} />
