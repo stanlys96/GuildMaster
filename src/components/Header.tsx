@@ -6,6 +6,8 @@ import {
   LogOut,
   PersonStandingIcon,
   Search,
+  ShoppingBasket,
+  Store,
   Sword,
   Wallet,
 } from "lucide-react";
@@ -41,18 +43,18 @@ const Header: React.FC<Props> = ({ element }: Props) => {
         />
       ),
     },
-    // {
-    //   path: "/search",
-    //   label: "Search",
-    //   icon: (
-    //     <Search
-    //       size={15}
-    //       color={`${
-    //         location.pathname.startsWith("/search") ? "#9D4DDD" : "white"
-    //       }`}
-    //     />
-    //   ),
-    // },
+    {
+      path: "/store",
+      label: "Store",
+      icon: (
+        <Store
+          size={15}
+          color={`${
+            location.pathname.startsWith("/store") ? "#9D4DDD" : "white"
+          }`}
+        />
+      ),
+    },
   ];
 
   return (

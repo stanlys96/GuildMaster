@@ -27,3 +27,13 @@ export function formatLabel(input: string): string {
   const withSpaces = input.replace(/_/g, " ");
   return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1);
 }
+
+export function formatCurrencyFromString(value: string): string {
+  if (!value) return "";
+
+  // Remove any existing non-digit characters (just in case)
+  const numericString = value.replace(/\D+/g, "");
+
+  // Add commas using regex
+  return numericString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

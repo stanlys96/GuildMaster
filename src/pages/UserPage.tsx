@@ -114,14 +114,14 @@ export const UserPage = () => {
                 >
                   <p>Home</p>
                 </div>
-                <div
+                {/* <div
                   onClick={() => setSelectedCategory("shop")}
                   className={`border ${
                     selectedCategory === "shop" ? "bg-[#88888830]" : ""
                   } border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit`}
                 >
                   <p>Shop</p>
-                </div>
+                </div> */}
                 <div
                   onClick={() => setSelectedCategory("alterfun")}
                   className={`border ${

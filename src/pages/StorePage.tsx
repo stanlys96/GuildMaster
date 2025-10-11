@@ -7,10 +7,15 @@ import {
   Search,
   Grid,
   List,
+  PersonStandingIcon,
 } from "lucide-react";
 import { useWallet } from "../contexts/WalletContext";
+import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
+import { formatCurrencyFromString } from "../utils/helper";
 
 const StorePage: React.FC = () => {
+  const navigate = useNavigate();
   const { isConnected } = useWallet();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -21,7 +26,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-1",
       name: "Skyward Sentinels T-Shirt",
-      price: 0.05,
+      price: 15000,
       originalPrice: 0.08,
       image:
         "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -38,7 +43,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-2",
       name: "Digital Art Collection #1",
-      price: 0.12,
+      price: 12000,
       image:
         "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=400",
       category: "Digital Art",
@@ -54,7 +59,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-3",
       name: "Luna's Moonlight Hoodie",
-      price: 0.08,
+      price: 20000,
       originalPrice: 0.12,
       image:
         "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -71,7 +76,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-4",
       name: "Thunder Strike Gaming Mouse",
-      price: 0.15,
+      price: 100000,
       image:
         "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=400",
       category: "Gaming Gear",
@@ -87,7 +92,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-5",
       name: "Crystal Heart Necklace",
-      price: 0.06,
+      price: 150000,
       image:
         "https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg?auto=compress&cs=tinysrgb&w=400",
       category: "Accessories",
@@ -103,7 +108,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-6",
       name: "Phoenix Fire Art Print Set",
-      price: 0.04,
+      price: 200000,
       image:
         "https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&w=400",
       category: "Art Prints",
@@ -119,7 +124,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-7",
       name: "Shadow Dancer Mask",
-      price: 0.07,
+      price: 250000,
       image:
         "https://images.pexels.com/photos/1205301/pexels-photo-1205301.jpeg?auto=compress&cs=tinysrgb&w=400",
       category: "Accessories",
@@ -135,7 +140,7 @@ const StorePage: React.FC = () => {
     {
       id: "prod-8",
       name: "Aria's Music Album NFT",
-      price: 0.25,
+      price: 300000,
       image:
         "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=400",
       category: "Music",
@@ -171,8 +176,22 @@ const StorePage: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background">
+      <Header
+        element={
+          <div
+            onClick={() => navigate("/profile")}
+            className="flex gap-x-2 items-center cursor-pointer"
+          >
+            <PersonStandingIcon size={30} />
+            <div className="flex flex-col text-white">
+              <p className="text-[12px]">Stanly Sukmajaya</p>
+              <p className="text-[12px] text-[#FFFFFF75]">@stanly_sukmajaya</p>
+            </div>
+          </div>
+        }
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">AlterFun Store</h1>
@@ -248,8 +267,9 @@ const StorePage: React.FC = () => {
         >
           {filteredProducts.map((product) => (
             <div
+              onClick={() => navigate("/kitsunex/shop/audio_pack")}
               key={product.id}
-              className={`bg-surface rounded-2xl overflow-hidden shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1 group ${
+              className={`bg-surface cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1 group ${
                 viewMode === "list" ? "flex" : ""
               }`}
             >
@@ -320,26 +340,20 @@ const StorePage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span className="text-white font-bold text-xl">
-                      {product.price} ETH
+                      Rp {formatCurrencyFromString(product.price?.toString())}
                     </span>
-                    {product.originalPrice && (
+                    {/* {product.originalPrice && (
                       <span className="text-gray-500 text-sm line-through">
-                        {product.originalPrice} ETH
+                        Rp {product.originalPrice}
                       </span>
-                    )}
+                    )} */}
                   </div>
                   <button
-                    disabled={!product.inStock || !isConnected}
+                    disabled={isConnected}
                     className="bg-gradient-to-r from-accent-purple to-accent-blue hover:from-purple-600 hover:to-blue-600 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-purple-500/25 disabled:cursor-not-allowed flex items-center space-x-2"
                   >
                     <ShoppingCart className="h-4 w-4" />
-                    <span>
-                      {!isConnected
-                        ? "Connect Wallet"
-                        : !product.inStock
-                        ? "Sold Out"
-                        : "Add to Cart"}
-                    </span>
+                    <span>Buy</span>
                   </button>
                 </div>
               </div>
