@@ -53,7 +53,9 @@ export default function LiveTokenWithWeeklyHistory() {
       <div className="flex items-center justify-between">
         <div>
           <div className="text-lg font-semibold">KITSUNE / IDR</div>
-          <div className="text-3xl font-bold">Rp {price}</div>
+          <div className="text-3xl font-bold">
+            Rp {formatCurrencyFromString(price?.toString())}
+          </div>
         </div>
         <div
           className={`text-sm font-medium ${
