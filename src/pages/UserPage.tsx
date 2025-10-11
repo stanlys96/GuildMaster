@@ -33,6 +33,7 @@ export const UserPage = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("home");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenSupport, setIsOpenSupport] = useState<boolean>(false);
   const [isOpenTransaction, setIsOpenTransaction] = useState<boolean>(false);
   const createFormik = useFormik<any>({
     initialValues: {
@@ -80,6 +81,7 @@ export const UserPage = () => {
               <GradientButton
                 // loading={loading}
                 type="submit"
+                onClick={() => setIsOpenSupport(true)}
                 fullWidth
                 className="flex justify-center items-center"
               >
@@ -167,7 +169,7 @@ export const UserPage = () => {
                         <GradientButton
                           className="flex justify-center items-center"
                           fullWidth
-                          onClick={() => {}}
+                          onClick={() => setIsOpenSupport(true)}
                         >
                           <BiMoney />
                           <p className="text-white flex gap-x-2 items-center">
@@ -291,6 +293,81 @@ export const UserPage = () => {
           <p className="">4. Sakura</p>
           <p className="">5. Naruto</p>
           <p className="">6. Boruto</p>
+        </div>
+      </AnimatedModal>
+      <AnimatedModal
+        isOpen={isOpenSupport}
+        onClose={() => {
+          setIsOpenSupport(false);
+        }}
+        className="text-white"
+      >
+        <div className="flex flex-col gap-y-2">
+          <div className="flex flex-row items-center w-full gap-x-4">
+            <p className="text-[24px] font-semibold">Send Support</p>
+          </div>
+          <input
+            id="name"
+            name="name"
+            type="name"
+            onBlur={createFormik.handleBlur}
+            value={createFormik.values.repeatPassword}
+            onChange={createFormik.handleChange}
+            placeholder="Name"
+            className={`text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+              false
+                ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                : "dark:bg-zinc-800 bg-[#2D2F33]"
+            }`}
+            disabled={false}
+          />
+          <textarea
+            id="name"
+            name="name"
+            rows={5}
+            onBlur={createFormik.handleBlur}
+            value={createFormik.values.repeatPassword}
+            onChange={createFormik.handleChange}
+            placeholder="Support Message"
+            className={`text-white shadow-sm focus-visible:outline-none rounded p-3 text-sm ${
+              false
+                ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                : "dark:bg-zinc-800 bg-[#2D2F33]"
+            }`}
+            disabled={false}
+          />
+          <div
+            className={`p-3 text-sm flex gap-x-2 items-center ${
+              false
+                ? "dark:bg-zinc-700 bg-zinc-100 cursor-not-allowed"
+                : "dark:bg-zinc-800 bg-[#2D2F33]"
+            }`}
+          >
+            <p>Rp </p>
+            <input
+              id="amount"
+              name="amount"
+              type="text"
+              onBlur={createFormik.handleBlur}
+              value={createFormik.values.repeatPassword}
+              onChange={createFormik.handleChange}
+              placeholder="Amount"
+              className={`text-white bg-transparent w-full shadow-sm focus-visible:outline-none rounded`}
+              disabled={false}
+            />
+          </div>
+          <GradientButton
+            // loading={loading}
+            type="submit"
+            onClick={() => setIsOpenSupport(true)}
+            fullWidth
+            className="flex justify-center items-center"
+          >
+            <BiMoney />
+            <span className="flex flex-row gap-x-1 self-center items-center justify-center">
+              Support
+            </span>
+          </GradientButton>
         </div>
       </AnimatedModal>
     </div>
