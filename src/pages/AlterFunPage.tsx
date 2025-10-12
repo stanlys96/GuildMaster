@@ -19,6 +19,7 @@ import TokenTicker from "../components/TokenTicker";
 import { AnimatedModal } from "../components/AnimatedModal";
 import { useState } from "react";
 import { SiDepositphotos } from "react-icons/si";
+import { BiMoney } from "react-icons/bi";
 
 export const AlterFunPage = () => {
   const navigate = useNavigate();
@@ -73,6 +74,39 @@ export const AlterFunPage = () => {
             >
               <Eye />
               <p>See Your Members</p>
+            </div>
+            <div className="flex flex-col gap-y-4">
+              <div className="flex flex-row gap-x-8">
+                <div>
+                  <p className="text-[24px] mb-4">Active Proposals (3)</p>
+                  <div className="bg-surface w-fit rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
+                    <p>1. Let's make Kitsune great again!</p>
+                    <p>2. Host some merchandising events!</p>
+                    <p>3. Play board games!</p>
+                    <div
+                      onClick={() => setIsOpenTransaction(true)}
+                      className="bg-background p-3 rounded-lg  w-fit flex flex-row gap-x-2 items-center cursor-pointer mt-2"
+                    >
+                      <Eye />
+                      <p className="text-left">See all active proposals</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[24px] mb-4">Past Proposals (2)</p>
+                  <div className="bg-surface w-fit rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
+                    <p>1. Let's make Kitsune great again!</p>
+                    <p>2. Host some merchandising events!</p>
+                    <div
+                      onClick={() => setIsOpenTransaction(true)}
+                      className="bg-background p-3 rounded-lg  w-fit flex flex-row gap-x-2 items-center cursor-pointer mt-2"
+                    >
+                      <Eye />
+                      <p className="text-left">See all past proposals</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div>

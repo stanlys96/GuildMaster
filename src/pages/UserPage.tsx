@@ -130,6 +130,14 @@ export const UserPage = () => {
                 >
                   <p>AlterFun</p>
                 </div>
+                <div
+                  onClick={() => setSelectedCategory("proposals")}
+                  className={`border ${
+                    selectedCategory === "proposals" ? "bg-[#88888830]" : ""
+                  } border-[#88888850] rounded-md py-2 px-5 cursor-pointer w-fit`}
+                >
+                  <p>Proposals</p>
+                </div>
               </div>
               {selectedCategory === "home" && (
                 <div className="grid grid-cols-2 gap-2">
@@ -262,6 +270,52 @@ export const UserPage = () => {
                     </div>
                   </div>
                   <TokenTicker />
+                </div>
+              )}
+              {selectedCategory === "proposals" && (
+                <div className="p-4 flex flex-col gap-y-4">
+                  <GradientButton
+                    // loading={loading}
+                    type="submit"
+                    // onClick={() => setIsOpenSupport(true)}
+                    className="flex justify-center items-center"
+                  >
+                    <BiMoney />
+                    <span className="flex flex-row gap-x-1 self-center items-center justify-center">
+                      Create a proposal
+                    </span>
+                  </GradientButton>
+                  <div className="flex flex-row gap-x-8">
+                    <div>
+                      <p className="text-[24px] mb-4">Active Proposals (3)</p>
+                      <div className="bg-surface w-fit rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
+                        <p>1. Let's make Kitsune great again!</p>
+                        <p>2. Host some merchandising events!</p>
+                        <p>3. Play board games!</p>
+                        <div
+                          onClick={() => setIsOpenTransaction(true)}
+                          className="bg-background p-3 rounded-lg  w-fit flex flex-row gap-x-2 items-center cursor-pointer mt-2"
+                        >
+                          <Eye />
+                          <p className="text-left">See all active proposals</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[24px] mb-4">Past Proposals (2)</p>
+                      <div className="bg-surface w-fit rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
+                        <p>1. Let's make Kitsune great again!</p>
+                        <p>2. Host some merchandising events!</p>
+                        <div
+                          onClick={() => setIsOpenTransaction(true)}
+                          className="bg-background p-3 rounded-lg  w-fit flex flex-row gap-x-2 items-center cursor-pointer mt-2"
+                        >
+                          <Eye />
+                          <p className="text-left">See all past proposals</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
