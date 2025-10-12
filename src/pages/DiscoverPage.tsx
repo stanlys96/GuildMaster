@@ -421,11 +421,6 @@ const DiscoverPage: React.FC = () => {
                   />
                 ))}
               </div>
-              <GradientButton className="mt-5" onClick={() => {}}>
-                <p className="text-white flex gap-x-2 items-center">
-                  Create your own shop <ArrowRight />
-                </p>
-              </GradientButton>
             </div>
             <div className="flex justify-center items-center">
               <Lottie
@@ -486,11 +481,6 @@ const DiscoverPage: React.FC = () => {
                 berinteraksi dengan audiens, membangun brand, dan mengembangkan
                 potensi kamu sebagai kreator.
               </p>
-              <GradientButton className="" onClick={() => {}}>
-                <p className="text-white flex gap-x-2 items-center">
-                  Create your own shop <ArrowRight />
-                </p>
-              </GradientButton>
             </div>
             <Lottie
               animationData={Contract}
