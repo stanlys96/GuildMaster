@@ -229,7 +229,6 @@ export const UserPage = () => {
                       // loading={loading}
                       type="submit"
                       // onClick={() => setIsOpenSupport(true)}
-                      fullWidth
                       className="flex justify-center items-center"
                     >
                       <BiMoney />
