@@ -236,7 +236,10 @@ const DiscoverPage: React.FC = () => {
               </div>
             </div>
             <div className="favorite-vtuber mt-2">
-              <GradientButton className="mt-2" onClick={() => {}}>
+              <GradientButton
+                className="mt-2"
+                onClick={() => navigate("/explore")}
+              >
                 <p className="text-white flex gap-x-2 items-center">
                   Find your favorite Vtuber <Search />
                 </p>
