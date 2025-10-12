@@ -292,9 +292,12 @@ const DiscoverPage: React.FC = () => {
                 berkali-kali, dan biarkan pembeli menikmati karyamu dalam
                 hitungan detik!
               </p>
-              <GradientButton className="mt-5" onClick={() => {}}>
+              <GradientButton
+                className="mt-5"
+                onClick={() => navigate("/store")}
+              >
                 <p className="text-white flex gap-x-2 items-center">
-                  Create your own shop <ArrowRight />
+                  Go to shop <ArrowRight />
                 </p>
               </GradientButton>
             </div>
