@@ -225,6 +225,18 @@ export const UserPage = () => {
                       <Eye />
                       <p>See Members</p>
                     </div>
+                    <GradientButton
+                      // loading={loading}
+                      type="submit"
+                      // onClick={() => setIsOpenSupport(true)}
+                      fullWidth
+                      className="flex justify-center items-center"
+                    >
+                      <BiMoney />
+                      <span className="flex flex-row gap-x-1 self-center items-center justify-center">
+                        Buy $KITSUNE
+                      </span>
+                    </GradientButton>
                   </div>
                   <div>
                     <div className="bg-surface rounded-2xl p-4 flex-1 flex flex-col overflow-scroll mb-4">
